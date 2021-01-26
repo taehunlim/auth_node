@@ -10,9 +10,10 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
 
+const accountController = require('accounts/account.controller');
 const errorHandler = require('_middleware/error-handler');
 
-//DB Connection
+// DB Connection
 require('_middleware/db');
 
 
@@ -29,6 +30,9 @@ if(process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
+
+// Routing
+app.use('/account', accountController);
 
 // Global Error Handler
 app.use(errorHandler);
