@@ -9,6 +9,10 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
+
+const errorHandler = require('_middleware/error-handler');
+
+
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}))
@@ -21,6 +25,10 @@ if(process.env.NODE_ENV === 'development') {
 
     app.use(morgan('dev'));
 }
+
+
+// Global Error Handler
+app.use(errorHandler);
 
 
 const port = process.env.PORT
