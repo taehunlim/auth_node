@@ -12,6 +12,9 @@ const cookieParser = require('cookie-parser');
 
 const errorHandler = require('_middleware/error-handler');
 
+//DB Connection
+require('_middleware/db');
+
 
 app.use(cookieParser());
 app.use(bodyParser.json());
