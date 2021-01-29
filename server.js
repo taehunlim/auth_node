@@ -34,6 +34,9 @@ if(process.env.NODE_ENV === 'development') {
 // Routing
 app.use('/account', accountController);
 
+//swagger doc router
+app.use('/api-docs', require('_helper/swagger'));
+
 // Global Error Handler
 app.use(errorHandler);
 

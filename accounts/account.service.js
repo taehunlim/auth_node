@@ -15,6 +15,9 @@ async function register(params, origin) {
 
     const account = new userModel(params);
 
+    //The first account registered in the system is assigned the Admin role
+    const isFirstAccount = await userModel.countDocuments({}) === 0;
+
     account.verificationToken = randomTokenString();
 
     account.passwordHash = bcrypt.hashSync(params.password)
