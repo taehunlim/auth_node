@@ -8,6 +8,7 @@ const accountService = require('./account.service');
 const validRequest = require('_middleware/validate-request');
 
 router.post('/register', registerSchema, register)
+router.post('/verify-email', verifyEmailSchema, verifyEmail)
 
 
 module.exports = router;
@@ -35,4 +36,23 @@ function register(req, res, next) {
             })
         })
         .catch(next);
+}
+
+function verifyEmailSchema(req, res, next) {
+    const schema = Joi.object({
+        token: Joi.string().required()
+    })
+
+    validRequest(req, next, schema)
+}
+
+function verifyEmail(req, res, next) {
+    accountService
+        .verifyEmail(req.body)
+        .then(() => {
+            res.json({
+                message: "Verification Successful, you can now login"
+            })
+        })
+        .catch(next)
 }

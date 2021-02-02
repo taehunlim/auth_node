@@ -5,7 +5,8 @@ const bcrypt = require('bcryptjs');
 const sendEmail = require('_helper/send-email');
 
 module.exports = {
-    register
+    register,
+    verifyEmail
 }
 
 async function register(params, origin) {
@@ -72,4 +73,16 @@ async function sendVerificationEmail (account, origin) {
                 ${message}`
     })
 }
+
+async function verifyEmail ({token}) {
+    const account = await userModel.findOne({verificationToken: token})
+
+    if(!account) throw 'Verification failed';
+
+    account.verified = Date.now();
+    account.verificationToken = undefined;
+    await account.save();
+}
+
+
 

@@ -20,11 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6316a8d8-e217-4969-8a07-6640aa9f9b5b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/_helper/send-email.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/account.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/account.controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts/account.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/account.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +71,7 @@
       <workItem from="1612076590812" duration="285000" />
       <workItem from="1612083151886" duration="4000" />
       <workItem from="1612083165030" duration="4000" />
-      <workItem from="1612257360887" duration="2066000" />
+      <workItem from="1612257360887" duration="3452000" />
     </task>
     <servers />
   </component>
@@ -97,9 +95,9 @@
       <screen x="0" y="23" width="1680" height="970" />
     </state>
     <state x="822" y="262" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1680.970@0.23.1680.970" timestamp="1611652316625" />
-    <state x="882" y="236" width="670" height="676" key="search.everywhere.popup" timestamp="1611653974717">
+    <state x="882" y="236" width="670" height="676" key="search.everywhere.popup" timestamp="1612260060958">
       <screen x="0" y="23" width="1680" height="970" />
     </state>
-    <state x="882" y="236" width="670" height="676" key="search.everywhere.popup/0.23.1680.970@0.23.1680.970" timestamp="1611653974717" />
+    <state x="882" y="236" width="670" height="676" key="search.everywhere.popup/0.23.1680.970@0.23.1680.970" timestamp="1612260060958" />
   </component>
 </project>
