@@ -63,3 +63,40 @@ paths:
                     type: string
                     example: "Registration successful, please check your email for verification instructions"
 
+  /account/verify-email:
+    post:
+      summary: Verfication email
+      operationId: Verify-email
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  example: "eyJpZCI6IjYwMTY1ZDcwYWViOGM5MDUyMDQwODI2ZiIsImlhdCI6MTYxMjA4NjY3MCwiZXhwIjoxNjEyMDg4NDcwfQ.BwmKXD-oo89JeFAafamwRv8GEpe3SQ7kMzzG75A2mZM"
+              required:
+                - token
+      responses:
+        "200":
+          description: The verification email request was successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Successful verification"
+        "400":
+          description: The token is not valid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Verification failed"
