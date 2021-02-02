@@ -100,3 +100,76 @@ paths:
                   message:
                     type: string
                     example: "Verification failed"
+
+  /account/authenticate:
+    post:
+      summary: authenticate
+      operationId: authenticate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: "dsa123@naver.com"
+                password:
+                  type: string
+                  example: "asd123"
+              required:
+                - email
+                - password
+      responses:
+        "200":
+          description: successful Login
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "6016829ddc7fe60b981ef11b"
+                  title:
+                    type: string
+                    example: "Mr"
+                  firstName:
+                    type: string
+                    example: "lim"
+                  lastName:
+                    type: string
+                    example: "tae"
+                  email:
+                    type: string
+                    example: dsa123@naver.com
+                  role:
+                    type: string
+                    example: "user"
+                  jwtToken:
+                    type: string
+                    example: "eyJpZCI6IjYwMTY1ZDcwYWViOGM5MDUyMDQwODI2ZiIsImlhdCI6MTYxMjA4NjY3MCwiZXhwIjoxNjEyMDg4NDcwfQ.BwmKXD-oo89JeFAafamwRv8GEpe3SQ7kMzzG75A2mZM"
+                  verified:
+                    type: string
+                    example: "2021-01-31T10:13:58.140Z"
+                required:
+                  - id
+                  - title
+                  - firstName
+                  - lastname
+                  - email
+                  - role
+                  - verified
+                  - jwtToken
+
+        "400":
+          description: Email or Password is incorrect
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Email or Password is incorrect"
