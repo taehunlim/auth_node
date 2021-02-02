@@ -1,12 +1,14 @@
 const userModel = require('./account.model');
 const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const sendEmail = require('_helper/send-email');
 
 module.exports = {
     register,
-    verifyEmail
+    verifyEmail,
+    authenticate
 }
 
 async function register(params, origin) {
@@ -84,5 +86,32 @@ async function verifyEmail ({token}) {
     await account.save();
 }
 
+async function authenticate ({email, password}) {
+    const account = await userModel.findOne({email: email})
+
+    if(!account || !account.verified || !bcrypt.compareSync(password, account.passwordHash)) {
+        throw "Email or Password is incorrect";
+    }
+
+    const jwtToken = generateJwtToken(account);
+
+    return {
+        ...basicDetails(account),
+        jwtToken
+    }
+}
+
+function generateJwtToken (account) {
+    return jwt.sign(
+        {id: account._id},
+        process.env.SECRET_KEY,
+        {expiresIn: "30m"}
+    )
+}
+
+function basicDetails (account) {
+    const {id, title, firstName, lastName, email, role, created, updated, verified} = account;
+    return {id, title, firstName, lastName, email, role, created, updated, verified}
+}
 
 

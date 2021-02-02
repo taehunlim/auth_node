@@ -44,4 +44,19 @@ const schema = new Schema(
     }
 )
 
+schema.virtual('isVerified').get(function () {
+    return !!(this.verified || this.passwordHash)
+})
+
+
+//
+schema.set('toJSON', {
+    virtual: true,
+    versionKey: false,
+    transform: function (doc, ret) {
+        delete ret._id;
+        delete ret.passwordHash;
+    }
+})
+
 module.exports = mongoose.model('account', schema)
