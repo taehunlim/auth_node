@@ -20,13 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6316a8d8-e217-4969-8a07-6640aa9f9b5b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_helper/swagger.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/swagger.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_helper/send-email.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts/account.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/account.service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,7 +69,11 @@
       <updated>1611651614100</updated>
       <workItem from="1611651615147" duration="7170000" />
       <workItem from="1611737610043" duration="1774000" />
-      <workItem from="1611904459017" duration="363000" />
+      <workItem from="1611904459017" duration="1087000" />
+      <workItem from="1612076590812" duration="285000" />
+      <workItem from="1612083151886" duration="4000" />
+      <workItem from="1612083165030" duration="4000" />
+      <workItem from="1612257360887" duration="2066000" />
     </task>
     <servers />
   </component>
