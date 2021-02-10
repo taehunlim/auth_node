@@ -10,6 +10,8 @@ const validRequest = require('_middleware/validate-request');
 router.post('/register', registerSchema, register)
 router.post('/verify-email', verifyEmailSchema, verifyEmail)
 router.post('/authenticate', authenticateSchema, authenticate)
+router.post('/forgot-password', forgotPasswordSchema, forgotPassword)
+router.put('/reset-password', resetPasswordSchema, resetPassword)
 
 
 module.exports = router;
@@ -60,7 +62,7 @@ function verifyEmail(req, res, next) {
 
 function authenticateSchema (req, res, next) {
     const schema = Joi.object({
-        email: Joi.string().required(),
+        email: Joi.string().email().required(),
         password: Joi.string().required()
     })
 
@@ -76,6 +78,43 @@ function authenticate (req, res, next) {
         .authenticate({email, password, ipAddress})
         .then(account => {
             res.json(account)
+        })
+        .catch(next)
+}
+
+function forgotPasswordSchema (req, res, next) {
+    const schema = Joi.object({
+        email: Joi.string().email().required()
+    })
+
+    validRequest(req, next, schema)
+}
+
+function forgotPassword (req, res, next) {
+
+    accountService
+        .forgotPassword(req.body, req.get('origin'))
+        .then(() => {
+            res.json("Please check your email for password reset")
+        })
+        .catch(next)
+}
+
+function resetPasswordSchema (req, res, next) {
+    const schema = Joi.object({
+        token: Joi.string().required(),
+        password: Joi.string().min(6).required(),
+        confirmPassword: Joi.string().valid(Joi.ref('password')).required()
+    })
+
+    validRequest(req, next, schema)
+}
+
+function resetPassword (req, res, next) {
+    accountService
+        .resetPassword(req.body)
+        .then(() => {
+            res.json("successful change password, you can now log in")
         })
         .catch(next)
 }

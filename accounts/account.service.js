@@ -8,7 +8,9 @@ const sendEmail = require('_helper/send-email');
 module.exports = {
     register,
     verifyEmail,
-    authenticate
+    authenticate,
+    forgotPassword,
+    resetPassword
 }
 
 async function register(params, origin) {
@@ -114,4 +116,63 @@ function basicDetails (account) {
     return {id, title, firstName, lastName, email, role, created, updated, verified}
 }
 
+async function forgotPassword ({email}, origin) {
+    const account = await userModel.findOne({email})
+
+    if(!account) {
+        throw "No User"
+    }
+
+    else{
+        account.resetToken = {
+            token: randomTokenString(),
+            expires: new Date(Date.now() + 24*60*60*1000)
+        };
+
+        await account.save();
+
+        await sendPasswordResetEmail(account, origin)
+    }
+
+}
+
+async function sendPasswordResetEmail (account, origin) {
+    let message;
+
+    if(origin) {
+        const resetUrl = `${origin}/account/reset-password/${account.resetToken.token}`
+
+        message =
+            `<p>Please Click The below link to reset your password, the link will be valid for 1 day:</p>
+            <p><a href={resetUrl}>${resetUrl}</a></p>`;
+    }
+    else {
+        message = `<p>Please use the below token to reset your password with the <code>/account/reset-password</code> api route:</p> 
+                    <p><code>${account.resetToken.token}</code></p>`;
+    }
+
+    await sendEmail({
+        to: account.email,
+        subject: "Reset password",
+        html: `<h4>Reset password email</h4>
+                ${message}`
+    })
+}
+
+async function resetPassword ({token, password}) {
+    const account = await userModel.findOne({
+        'resetToken.token': token,
+        'resetToken.expires': { $gt: Date.now( )}
+    });
+
+    if(!account) {
+        throw "Invalid token"
+    }
+
+    account.passwordHash = bcrypt.hashSync(password, 10)
+    account.passwordReset = Date.now()
+    account.resetToken = undefined
+
+    await account.save()
+}
 

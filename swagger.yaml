@@ -173,3 +173,90 @@ paths:
                   message:
                     type: string
                     example: "Email or Password is incorrect"
+
+  /account/forgot-password:
+    post:
+      summary: forgot password
+      operationId: forgot password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: "dsa123@naver.com"
+              required:
+                - email
+
+      responses:
+        "200":
+          description: Please check your email for password reset
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Please check your email for password reset"
+        "400":
+          description: No user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "No User"
+
+  /account/reset-password:
+    put:
+      summary: reset password
+      operationId: reset password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  example: "c13d840431c2bd6ab4a6680c318f50f496137a31aadee59e820f07bb07f24421fd963bb800bcd959"
+                password:
+                  type: string
+                  example: "asd123"
+                confirmPassword:
+                  type: string
+                  example: "asd123"
+              required:
+                - token
+                - password
+                - confirmPassword
+
+      responses:
+        "200":
+          description: successful change password, you can now log in
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "successful change password, you can now log in"
+
+        "400":
+          description: Invalid token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Invalid token"
