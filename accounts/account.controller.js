@@ -6,12 +6,18 @@ const Joi = require('joi');
 
 const accountService = require('./account.service');
 const validRequest = require('_middleware/validate-request');
+const authorize = require('_middleware/authorize');
+const Role = require('_helper/role')
 
 router.post('/register', registerSchema, register)
 router.post('/verify-email', verifyEmailSchema, verifyEmail)
 router.post('/authenticate', authenticateSchema, authenticate)
 router.post('/forgot-password', forgotPasswordSchema, forgotPassword)
 router.put('/reset-password', resetPasswordSchema, resetPassword)
+
+//Admin
+router.get('/', authorize(Role.Admin), getAllUser)
+router.get('/:userId', authorize(Role.Admin), getUserById)
 
 
 module.exports = router;
@@ -116,5 +122,23 @@ function resetPassword (req, res, next) {
         .then(() => {
             res.json("successful change password, you can now log in")
         })
+        .catch(next)
+}
+
+function getAllUser (req, res, next) {
+    accountService
+        .getAllUser()
+        .then(accounts => {
+            res.json(accounts)
+        })
+        .catch(next)
+}
+
+function getUserById (req, res, next) {
+    accountService
+        .getUserById(req.params)
+        .then(detail => [
+            res.json(detail)
+        ])
         .catch(next)
 }

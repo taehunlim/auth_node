@@ -10,7 +10,9 @@ module.exports = {
     verifyEmail,
     authenticate,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    getAllUser,
+    getUserById
 }
 
 async function register(params, origin) {
@@ -176,3 +178,18 @@ async function resetPassword ({token, password}) {
     await account.save()
 }
 
+async function getAllUser () {
+    const accounts = await userModel.find();
+
+    return accounts.map(a => basicDetails(a))
+}
+
+async function getUserById ({userId}) {
+    const account = await userModel.findById({_id: userId});
+
+    if(!account) throw "The ID dose not exist";
+
+    return {
+        ...basicDetails(account)
+    }
+}
