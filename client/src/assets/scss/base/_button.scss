@@ -1,0 +1,86 @@
+
+/*=============================================
+=            button            =
+=============================================*/
+
+/*----------  default style  ----------*/
+
+.blog-button {
+  font-weight: 500;
+
+  display: inline-block;
+
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  color: $white;
+  border: 1px solid $black--two;
+  border-radius: 0;
+  background-color: $black--two;
+
+  &:hover {
+    color: $black--two !important;
+    background-color: transparent;
+  }
+
+
+
+  /*----------  small button style  ----------*/
+
+  &--small {
+    font-size: 12px;
+
+    padding: 12px 15px;
+
+    &--style2 {
+      padding: 7px 15px;
+    }
+  }
+
+
+  /*----------  medium button style  ----------*/
+
+  &--medium {
+    font-size: 14px;
+
+    padding: 15px 40px;
+  }
+
+  /*----------  large button style  ----------*/
+
+  &--large {
+    font-size: 16px;
+
+    padding: 15px 35px;
+  }
+
+  /*----------  extra large button style  ----------*/
+
+  &--xl {
+    font-size: 18px;
+
+    padding: 25px 35px;
+  }
+
+
+  /*----------  icon left style  ----------*/
+
+  &--icon {
+    /*----------  icon left style  ----------*/
+    &--left {
+      svg {
+        margin-right: 5px;
+      }
+    }
+    /*----------  icon right style  ----------*/
+    &--right {
+      svg {
+        margin-left: 5px;
+      }
+    }
+  }
+}
+
+
+/*=====  End of button  ======*/
+

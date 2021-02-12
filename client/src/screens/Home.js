@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Home = () => {
+import AccountModal from "../components/accountModal/AccountModal";
 
+
+const Home = () => {
     return (
-        <div>
-            work
-        </div>
+        <AccountModal/>
     );
 };
 

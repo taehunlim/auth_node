@@ -1,6 +1,9 @@
 import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom'
 import Home from "./screens/Home";
 
+import "./assets/scss/styles.scss"
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
   return (
