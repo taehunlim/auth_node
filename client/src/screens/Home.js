@@ -1,20 +1,26 @@
-import React from 'react';
-import { Container} from "react-bootstrap";
+import React, {useState} from 'react';
 
 import Header from "../components/header/Header";
 import Post from "../components/Post";
 
 
 const Home = () => {
+
+    const [menuActiveState, setMenuActiveState] = useState(false)
+    const [searchActiveState, setSearchActiveState] = useState(false)
+
     return (
         <div>
-            <Header/>
+            <Header
+                menuActiveState={menuActiveState}
+                setMenuActiveState={setMenuActiveState}
+                searchActiveState={searchActiveState}
+                setSearchActiveState={setSearchActiveState}
+            />
 
-            <div className="main-content space-mb--r130 space-mt--r130">
-                <Container>
-                    <Post/>
-                </Container>
-            </div>
+            <Post
+                activeState={menuActiveState || searchActiveState}
+            />
         </div>
     );
 };

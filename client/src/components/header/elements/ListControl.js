@@ -7,7 +7,7 @@ const ListControl = () => {
 
     return (
         <div className="list-control">
-            <ul className="d-block text-center">
+            <ul className="d-block text-center text-black">
                 <li>
                     <button
                         onClick={() => setModal(true)}

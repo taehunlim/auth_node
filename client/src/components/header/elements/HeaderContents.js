@@ -2,16 +2,17 @@ import React from 'react';
 import {Link} from 'react-router-dom'
 
 
-const HeaderContents = ({activeState}) => {
-
-    console.log(activeState)
+const HeaderContents = () => {
     return (
 
         <div
             id="sidebar-menu"
+            style={{
+                backgroundColor: "rgba(0, 0, 0, 0.4)"
+            }}
         >
             <ul
-                className={`${activeState ? "metismenu" : "d-none"}`}
+                className="activeState metismenu"
                 id="side-menu"
             >
 
