@@ -1,31 +1,19 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Modal, Tab, Tabs} from "react-bootstrap";
 import Authenticate from "./Authenticate";
 import Register from "./Register";
 
-const AccountModal = () => {
-
-    const [modal, setModal] = useState(false)
-
+const AccountModal = ({show, onHide}) => {
     return (
-        <div>
-            <button
-                onClick={() => setModal(true)}
-            >
-                register
-            </button>
             <Modal
-                show={modal}
-                onHide={() => setModal(false)}
+                show={show}
+                onHide={onHide}
                 className="account-modal"
             >
                 <Modal.Header
                     closeButton
                     className="modal-header"
                 >
-                    {/*<h2>*/}
-                    {/*    welcome*/}
-                    {/*</h2>*/}
                 </Modal.Header>
                 <Modal.Body className="modal-body">
                     <Tabs
@@ -42,7 +30,6 @@ const AccountModal = () => {
 
                 </Modal.Body>
             </Modal>
-        </div>
     );
 };
 

@@ -1,11 +1,21 @@
 import React from 'react';
+import { Container} from "react-bootstrap";
 
-import AccountModal from "../components/accountModal/AccountModal";
+import Header from "../components/header/Header";
+import Post from "../components/Post";
 
 
 const Home = () => {
     return (
-        <AccountModal/>
+        <div>
+            <Header/>
+
+            <div className="main-content space-mb--r130 space-mt--r130">
+                <Container>
+                    <Post/>
+                </Container>
+            </div>
+        </div>
     );
 };
 

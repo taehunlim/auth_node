@@ -1,6 +1,4 @@
 
-@import "node_modules/bootstrap/scss/bootstrap";
-
 
 @import "abstracts/mixins";
 @import "abstracts/variables";
@@ -15,3 +13,7 @@
 
 @import "layout/grid";
 @import "layout/account";
+@import "layout/vertical";
+@import "layout/blog";
+
+@import "node_modules/bootstrap/scss/bootstrap";
