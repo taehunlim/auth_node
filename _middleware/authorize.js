@@ -1,7 +1,7 @@
 
 const jwt = require('express-jwt');
-const userModel = require('accounts/account.model');
-const refreshTokenModel = require('accounts/refresh-token.model')
+const userModel = require('_accounts/account.model');
+const refreshTokenModel = require('_accounts/refresh-token.model')
 
 
 module.exports = authorize

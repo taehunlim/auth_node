@@ -10,7 +10,9 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
 
-const accountController = require('accounts/account.controller');
+const accountController = require('_accounts/account.controller');
+const blogController = require('_blog/blog.controller');
+
 const errorHandler = require('_middleware/error-handler');
 
 // DB Connection
@@ -33,6 +35,7 @@ if(process.env.NODE_ENV === 'development') {
 
 // Routing
 app.use('/account', accountController);
+app.use('/blog', blogController);
 
 //swagger doc router
 app.use('/api-docs', require('_helper/swagger'));

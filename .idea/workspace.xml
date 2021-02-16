@@ -20,17 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6316a8d8-e217-4969-8a07-6640aa9f9b5b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/assets/images/bg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/images/profile.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/header/elements/HeaderSearch.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_blog/blog.controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_blog/blog.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/scss/abstracts/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/scss/abstracts/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/scss/base/_utilities.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/scss/base/_utilities.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/scss/layout/_vertical.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/scss/layout/_vertical.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_middleware/authorize.js" beforeDir="false" afterPath="$PROJECT_DIR$/_middleware/authorize.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/account.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/_accounts/account.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/account.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/_accounts/account.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/account.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/_accounts/account.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/refresh-token.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/_accounts/refresh-token.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/header/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/header/elements/HeaderContents.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/header/elements/HeaderContents.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/screens/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/screens/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +48,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -67,6 +67,13 @@
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/client/src/assets/images" />
+      <recent name="$PROJECT_DIR$/client/src/components/verticalLayout/elements" />
+      <recent name="$PROJECT_DIR$/client/src/components/verticalLayout" />
+      <recent name="$PROJECT_DIR$/client/src/assets" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/client/src/assets/images" />
       <recent name="$PROJECT_DIR$/client/src/components/header/elements" />
@@ -74,13 +81,23 @@
       <recent name="$PROJECT_DIR$/client/src/assets/scss/layout" />
       <recent name="$PROJECT_DIR$/client/src/assets/scss/base" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/client/src/assets/images" />
-      <recent name="$PROJECT_DIR$/client/src/components/verticalLayout/elements" />
-      <recent name="$PROJECT_DIR$/client/src/components/verticalLayout" />
-      <recent name="$PROJECT_DIR$/client/src/assets" />
-      <recent name="$PROJECT_DIR$/client/src/images" />
-    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.dev" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -108,6 +125,7 @@
       <workItem from="1613116090752" duration="11937000" />
       <workItem from="1613285496531" duration="16848000" />
       <workItem from="1613366422468" duration="18968000" />
+      <workItem from="1613468557045" duration="411000" />
     </task>
     <servers />
   </component>
@@ -126,6 +144,9 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="810" y="303" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1613294840527">
       <screen x="0" y="25" width="1680" height="962" />
@@ -136,22 +157,22 @@
     </state>
     <state x="822" y="262" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1680.970@0.23.1680.970" timestamp="1611652316625" />
     <state x="822" y="262" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1680.962@0.25.1680.962" timestamp="1613370462386" />
-    <state width="893" height="251" key="GridCell.Tab.0.bottom" timestamp="1613028467981">
+    <state width="1230" height="251" key="GridCell.Tab.0.bottom" timestamp="1613468968142">
       <screen x="0" y="25" width="1680" height="962" />
     </state>
-    <state width="893" height="251" key="GridCell.Tab.0.bottom/0.25.1680.962@0.25.1680.962" timestamp="1613028467981" />
-    <state width="893" height="251" key="GridCell.Tab.0.center" timestamp="1613028467980">
+    <state width="1230" height="251" key="GridCell.Tab.0.bottom/0.25.1680.962@0.25.1680.962" timestamp="1613468968142" />
+    <state width="1230" height="251" key="GridCell.Tab.0.center" timestamp="1613468968141">
       <screen x="0" y="25" width="1680" height="962" />
     </state>
-    <state width="893" height="251" key="GridCell.Tab.0.center/0.25.1680.962@0.25.1680.962" timestamp="1613028467980" />
-    <state width="893" height="251" key="GridCell.Tab.0.left" timestamp="1613028467980">
+    <state width="1230" height="251" key="GridCell.Tab.0.center/0.25.1680.962@0.25.1680.962" timestamp="1613468968141" />
+    <state width="1230" height="251" key="GridCell.Tab.0.left" timestamp="1613468968140">
       <screen x="0" y="25" width="1680" height="962" />
     </state>
-    <state width="893" height="251" key="GridCell.Tab.0.left/0.25.1680.962@0.25.1680.962" timestamp="1613028467980" />
-    <state width="893" height="251" key="GridCell.Tab.0.right" timestamp="1613028467981">
+    <state width="1230" height="251" key="GridCell.Tab.0.left/0.25.1680.962@0.25.1680.962" timestamp="1613468968140" />
+    <state width="1230" height="251" key="GridCell.Tab.0.right" timestamp="1613468968141">
       <screen x="0" y="25" width="1680" height="962" />
     </state>
-    <state width="893" height="251" key="GridCell.Tab.0.right/0.25.1680.962@0.25.1680.962" timestamp="1613028467981" />
+    <state width="1230" height="251" key="GridCell.Tab.0.right/0.25.1680.962@0.25.1680.962" timestamp="1613468968141" />
     <state x="921" y="245" width="595" height="522" key="find.popup" timestamp="1613291705098">
       <screen x="0" y="25" width="1680" height="962" />
     </state>
