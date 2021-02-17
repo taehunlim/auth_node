@@ -5,25 +5,36 @@ const Schema = mongoose.Schema;
 
 const schema = Schema(
     {
-        headline: {},
-        content: {},
-        datePublished: {
-            type: Date,
-            default: Date.now()
+        writer: {
+            type : Schema.Types.ObjectId,
+            ref: "account"
         },
+        title: {
+            type: String,
+            required: true
+        },
+        content: {
+            type: String,
+            required: true
+        },
+        image: {
+            type: String
+            // data: Buffer,
+            // contentsType : String
+        },
+        datePublished: Date,
         dateModified: Date,
 
         comments: [
             {
-                text: {},
-                date: {
-                    type: Date,
-                    default: Date.now()
-                }
+                text: {
+                    type: String,
+                    required: true
+                },
+                date: Date
             }
         ],
         category: {}
-
     },
     {
         timeStamps: true

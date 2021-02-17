@@ -29,7 +29,7 @@ const schema = new Schema(
         acceptTerms: Boolean,
         role: {
             type: String,
-            default: role.user
+            default: role.User
         },
         verificationToken: String,
         verified: Date,

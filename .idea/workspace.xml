@@ -20,16 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6316a8d8-e217-4969-8a07-6640aa9f9b5b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/_blog/blog.controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_blog/blog.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_blog/blog.service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_middleware/authorize.js" beforeDir="false" afterPath="$PROJECT_DIR$/_middleware/authorize.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/account.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/_accounts/account.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/account.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/_accounts/account.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/account.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/_accounts/account.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/refresh-token.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/_accounts/refresh-token.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/header/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_accounts/account.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/_accounts/account.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_blog/blog.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/_blog/blog.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_blog/blog.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/_blog/blog.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/swagger.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +38,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1nbGwHxomiVpqVWrJmPqfS4SRV9" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -83,6 +81,22 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="SwaggerCodegen">
+      <option name="activeConfigurationType" value="FILE" />
+      <option name="configurationPath" value="" />
+      <option name="customJreEnabled" value="false" />
+      <option name="customTemplatesPath" value="" />
+      <option name="enableDebugLogging" value="false" />
+      <option name="generateToPath" value="" />
+      <option name="generationParameters">
+        <list />
+      </option>
+      <option name="generatorPath" value="" />
+      <option name="jdkPath" value="" />
+      <option name="language" value="" />
+      <option name="specificationPath" value="$PROJECT_DIR$/swagger.yaml" />
+      <method v="2" />
+    </configuration>
     <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -126,6 +140,8 @@
       <workItem from="1613285496531" duration="16848000" />
       <workItem from="1613366422468" duration="18968000" />
       <workItem from="1613468557045" duration="411000" />
+      <workItem from="1613468988583" duration="10678000" />
+      <workItem from="1613540346767" duration="9020000" />
     </task>
     <servers />
   </component>
@@ -178,10 +194,10 @@
     </state>
     <state x="921" y="245" width="595" height="522" key="find.popup/-1048.25.1048.745/0.25.1680.962@0.25.1680.962" timestamp="1613015958076" />
     <state x="921" y="245" width="595" height="522" key="find.popup/0.25.1680.962@0.25.1680.962" timestamp="1613291705098" />
-    <state x="882" y="236" width="670" height="671" key="search.everywhere.popup" timestamp="1613288582433">
+    <state x="882" y="236" width="670" height="671" key="search.everywhere.popup" timestamp="1613471205402">
       <screen x="0" y="25" width="1680" height="962" />
     </state>
     <state x="882" y="236" width="670" height="676" key="search.everywhere.popup/0.23.1680.970@0.23.1680.970" timestamp="1612260060958" />
-    <state x="882" y="236" width="670" height="671" key="search.everywhere.popup/0.25.1680.962@0.25.1680.962" timestamp="1613288582433" />
+    <state x="882" y="236" width="670" height="671" key="search.everywhere.popup/0.25.1680.962@0.25.1680.962" timestamp="1613471205402" />
   </component>
 </project>
