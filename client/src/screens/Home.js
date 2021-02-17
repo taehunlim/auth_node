@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 import Header from "../components/header/Header";
-import Post from "../components/Post";
+import Post from "../components/blog/Post";
 
 
 const Home = () => {

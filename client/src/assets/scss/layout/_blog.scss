@@ -191,3 +191,11 @@
     }
   }
 }
+
+.write {
+  &.title {
+    border: 1px solid lightgray;
+    border-radius: 2px;
+    height: 35px;
+  }
+}

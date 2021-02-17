@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Link} from 'react-router-dom'
 import AccountModal from "../../accountModal/AccountModal";
 
 const ListControl = () => {
@@ -9,15 +10,15 @@ const ListControl = () => {
         <div className="list-control">
             <ul className="d-block text-center text-black">
                 <li>
-                    <button
-                        onClick={() => setModal(true)}
-                    >
+                    <Link to="/write">
                         <i className="fas fa-edit"></i>
-                    </button>
+                    </Link>
 
                 </li>
                 <li>
-                    <button>
+                    <button
+                        onClick={() => setModal(true)}
+                    >
                         <i className="fas fa-address-book"></i>
                     </button>
 

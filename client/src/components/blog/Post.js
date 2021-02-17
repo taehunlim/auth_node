@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import { IoIosCalendar, IoIosAdd } from "react-icons/io";
 
 
-import img from '../assets/images/sample.png'
+import img from '../../assets/images/sample.png'
 
 const Post = ({activeState}) => {
     return (
