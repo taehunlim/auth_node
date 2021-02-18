@@ -1,9 +1,12 @@
-import React, {Fragment, useState} from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {Container, Card, Row, Col} from 'react-bootstrap';
 import { Editor } from 'react-draft-wysiwyg';
 import Dropzone from 'react-dropzone';
-import {EditorState} from 'draft-js';
+import {EditorState, convertToRaw} from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
+import axios from 'axios';
+import {ToastContainer, toast} from 'react-toastify'
 
 
 const Posting = () => {
@@ -16,22 +19,22 @@ const Posting = () => {
         image: ""
     })
 
-    const {title, content, image} = formData
+    const {title, content, image} = formData;
+
+    const editorToHtml = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+
+    console.log(editorToHtml)
+
+
+    //Strip HTML
+    // const contentForSubmit = editorToHtml.replace(/<[^>]+>/g, '')
 
     const handleChange = text => e => {
         setFormData({...formData, [text]: e.target.value})
-
-        console.log(formData)
     }
 
     const onEditorStateChange = (editorState) => {
         setEditorState(editorState)
-
-        console.log(editorState)
-    }
-
-    const handleSubmit = e => {
-        e.preventDefault();
     }
 
     const handleAcceptedFiles = files => {
@@ -43,7 +46,9 @@ const Posting = () => {
         });
 
         setSelectedFiles(files)
+
     };
+
 
     const formatBytes = (bytes, decimals = 2) => {
         if (bytes === 0) return "0 Bytes";
@@ -55,16 +60,42 @@ const Posting = () => {
         return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
     };
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        if(title) {
+            axios
+                .post("http://localhost:5000/blog", {
+                    title, content: editorToHtml, image:selectedFiles[0].preview
+                })
+                .then(res => {
+                    setFormData({...formData})
+                    toast.success('success')
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
+        else {
+            toast.error("title or content field is empty")
+        }
+    }
+
     return (
         <div className="space-mt--r130 write">
+            <ToastContainer/>
             <Container>
-                <form method="post">
-                    <Card.Header>
-                        <Card.Title>
-                            News & Updates
-                        </Card.Title>
-                    </Card.Header>
-
+                <Card.Header>
+                    <Card.Title className="mt-2 mb-2">
+                        News & Updates
+                    </Card.Title>
+                </Card.Header>
+                <form
+                    onSubmit={handleSubmit}
+                    style={{
+                        border: "1px outset rgba(0, 0, 0, 0.125)",
+                        borderTop: "none"
+                    }}
+                >
                     <Card.Body >
                         <Card.Title>
                             Title
@@ -93,8 +124,9 @@ const Posting = () => {
                             }}
                             editorState={editorState}
                             onEditorStateChange={onEditorStateChange}
-
                         />
+
+                        <div dangerouslySetInnerHTML={{__html: editorToHtml}} />
                     </Card.Body>
 
                     <Card.Body>
@@ -109,6 +141,7 @@ const Posting = () => {
                                 onDrop={acceptedFiles =>
                                     handleAcceptedFiles(acceptedFiles)
                                 }
+                                multiple
                             >
                                 {({ getRootProps, getInputProps }) => (
                                     <div className="dropzone">
@@ -166,9 +199,9 @@ const Posting = () => {
                         </form>
 
                         <div className="text-center mt-4">
-                            <button type="button" className="btn btn-primary m-2">Post</button>
+                            <button type="submit" className="btn btn-primary m-2">Post</button>
 
-                            <button type="button" className="btn btn-primary m-2">Save as Draft</button>
+                            <button type="submit" className="btn btn-primary m-2">Save as Draft</button>
                         </div>
                     </Card.Body>
                 </form>

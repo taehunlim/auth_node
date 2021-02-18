@@ -8,7 +8,7 @@ const validRequest = require('_middleware/validate-request');
 const authorize = require('_middleware/authorize');
 const Role = require('_helper/role')
 
-router.post('/', authorize(Role.Admin), postingSchema, posting)
+router.post('/', postingSchema, posting)
 
 function postingSchema (req, res, next) {
     const schema = Joi.object({

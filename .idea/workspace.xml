@@ -20,21 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6316a8d8-e217-4969-8a07-6640aa9f9b5b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/assets/scss/custom/_dropzone.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/scss/custom/_wysiwyg.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/blog/Posting.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/screens/Writing.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/scss/layout/_blog.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/scss/layout/_blog.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/scss/layout/_vertical.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/scss/layout/_vertical.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/scss/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/scss/styles.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/blog/Post.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/header/elements/ListControl.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/header/elements/ListControl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/screens/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/screens/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/blog/Posting.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/blog/Posting.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +136,11 @@
       <workItem from="1613468557045" duration="411000" />
       <workItem from="1613468988583" duration="10678000" />
       <workItem from="1613540346767" duration="10635000" />
-      <workItem from="1613557591347" duration="8113000" />
+      <workItem from="1613557591347" duration="8327000" />
+      <workItem from="1613626104389" duration="2101000" />
+      <workItem from="1613628245339" duration="6213000" />
+      <workItem from="1613638002121" duration="489000" />
+      <workItem from="1613644097330" duration="3333000" />
     </task>
     <servers />
   </component>
@@ -197,15 +188,15 @@
       <screen x="0" y="25" width="1680" height="962" />
     </state>
     <state width="1230" height="251" key="GridCell.Tab.0.right/0.25.1680.962@0.25.1680.962" timestamp="1613468968141" />
-    <state x="921" y="245" width="595" height="522" key="find.popup" timestamp="1613291705098">
+    <state x="921" y="245" width="595" height="522" key="find.popup" timestamp="1613633899827">
       <screen x="0" y="25" width="1680" height="962" />
     </state>
     <state x="921" y="245" width="595" height="522" key="find.popup/-1048.25.1048.745/0.25.1680.962@0.25.1680.962" timestamp="1613015958076" />
-    <state x="921" y="245" width="595" height="522" key="find.popup/0.25.1680.962@0.25.1680.962" timestamp="1613291705098" />
-    <state x="882" y="236" width="670" height="671" key="search.everywhere.popup" timestamp="1613471205402">
+    <state x="921" y="245" width="595" height="522" key="find.popup/0.25.1680.962@0.25.1680.962" timestamp="1613633899827" />
+    <state x="882" y="236" width="670" height="671" key="search.everywhere.popup" timestamp="1613632627610">
       <screen x="0" y="25" width="1680" height="962" />
     </state>
     <state x="882" y="236" width="670" height="676" key="search.everywhere.popup/0.23.1680.970@0.23.1680.970" timestamp="1612260060958" />
-    <state x="882" y="236" width="670" height="671" key="search.everywhere.popup/0.25.1680.962@0.25.1680.962" timestamp="1613471205402" />
+    <state x="882" y="236" width="670" height="671" key="search.everywhere.popup/0.25.1680.962@0.25.1680.962" timestamp="1613632627610" />
   </component>
 </project>
