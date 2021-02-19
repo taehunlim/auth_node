@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
 import {Card} from 'react-bootstrap';
 import {ToastContainer, toast} from 'react-toastify'
-import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+import {connect} from 'react-redux';
+
+import {loginUser} from '../../actions/authActions'
 
 
-const Authenticate = () => {
+const Authenticate = ({loginUser, history}) => {
 
     const [formData, setFormData] = useState({
         email: "",
@@ -25,26 +28,7 @@ const Authenticate = () => {
         if(email && password) {
             setFormData({...formData})
 
-            axios
-                .post("http://localhost:5000/account/authenticate", {
-                    email, password
-                })
-                .then(res => {
-                    setFormData({
-                        ...formData,
-                        email: '',
-                        password: "",
-                    })
-                    console.log(res.data)
-                })
-                .catch(err => {
-                    setFormData({
-                        ...formData,
-                        email: "",
-                        password: "",
-                    })
-                    toast.error("Email or Password is incorrect")
-                })
+            loginUser(formData, history)
         }
         else {
             toast.error("Please fill all fields ")
@@ -123,4 +107,10 @@ const Authenticate = () => {
     );
 };
 
-export default Authenticate;
+
+const mapStateToProps = state => ({
+    auth: state.authData,
+    errors: state.errors
+})
+
+export default connect(mapStateToProps, {loginUser})(withRouter(Authenticate));

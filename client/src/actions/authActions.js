@@ -24,3 +24,25 @@ export const registerUser = (userData, history) => dispatch => {
             })
         ))
 }
+
+export const loginUser = (userData, history) => dispatch => {
+
+    dispatch({
+        type: SET_CURRENT_USER
+    });
+
+    axios
+        .post("http://localhost:5000/account/authenticate", userData)
+        .then(res => {
+            setTimeout(() => {
+                history.push('/.')
+            })
+        })
+        .catch(err => {
+            toast.error("Email or Password is incorrect")
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response
+            })
+        })
+}

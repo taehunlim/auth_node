@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {Card} from 'react-bootstrap';
 import {ToastContainer, toast} from 'react-toastify'
 import {withRouter} from 'react-router-dom';
-import axios from 'axios';
 import {connect} from 'react-redux';
 
 import {registerUser} from '../../actions/authActions';
@@ -36,39 +35,6 @@ const Register = ({registerUser, history}) => {
                     setFormData({...formData, textChange: "SUBMITTING", acceptTerms: true})
 
                     registerUser(formData, history)
-
-
-                    // axios
-                    //     .post("http://localhost:5000/account/register", {
-                    //         title, firstName, lastName, email, password, confirmPassword, acceptTerms:true
-                    //     })
-                    //     .then(res => {
-                    //         setFormData({
-                    //             ...formData,
-                    //             title: "",
-                    //             firstName: "",
-                    //             lastName: "",
-                    //             email: "",
-                    //             password: "",
-                    //             confirmPassword: "",
-                    //             acceptTerms: false,
-                    //             textChange: "SUBMITTED"
-                    //         })
-                    //         toast.success(res.data.message)
-                    //     })
-                    //     .catch(err => {
-                    //         setFormData({
-                    //             ...formData,
-                    //             title: "",
-                    //             firstName: "",
-                    //             lastName: "",
-                    //             email: "",
-                    //             password: "",
-                    //             confirmPassword: "",
-                    //             acceptTerms: false,
-                    //             textChange: "JOIN"
-                    //         })
-                    //     })
                 }
 
 
