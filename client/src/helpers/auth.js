@@ -25,3 +25,12 @@ export const authenticate = (response, next) => {
     setLocalStorage('user', response.data)
     next();
 }
+
+export const isAuth = () => {
+    if(window !== 'undefined') {
+        const cookieChecked = getCookie('jwtToken')
+        if(cookieChecked) {
+            return JSON.parse(localStorage.getItem('user'))
+        }
+    }
+}
