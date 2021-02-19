@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
 import {Card} from 'react-bootstrap';
 import {ToastContainer, toast} from 'react-toastify'
+import {withRouter} from 'react-router-dom';
 import axios from 'axios';
+import {connect} from 'react-redux';
 
+import {registerUser} from '../../actions/authActions';
 
-const Register = () => {
+const Register = ({registerUser, history}) => {
 
     const [formData, setFormData] = useState({
         title: "",
@@ -30,38 +33,42 @@ const Register = () => {
         if( title && firstName && lastName && email && password ) {
             if( password === confirmPassword ) {
                 if( password.length >= 6) {
-                    setFormData({...formData, textChange: "SUBMITTING"})
-                    axios
-                        .post("http://localhost:5000/account/register", {
-                            title, firstName, lastName, email, password, confirmPassword, acceptTerms:true
-                        })
-                        .then(res => {
-                            setFormData({
-                                ...formData,
-                                title: "",
-                                firstName: "",
-                                lastName: "",
-                                email: "",
-                                password: "",
-                                confirmPassword: "",
-                                acceptTerms: false,
-                                textChange: "SUBMITTED"
-                            })
-                            toast.success(res.data.message)
-                        })
-                        .catch(err => {
-                            setFormData({
-                                ...formData,
-                                title: "",
-                                firstName: "",
-                                lastName: "",
-                                email: "",
-                                password: "",
-                                confirmPassword: "",
-                                acceptTerms: false,
-                                textChange: "JOIN"
-                            })
-                        })
+                    setFormData({...formData, textChange: "SUBMITTING", acceptTerms: true})
+
+                    registerUser(formData, history)
+
+
+                    // axios
+                    //     .post("http://localhost:5000/account/register", {
+                    //         title, firstName, lastName, email, password, confirmPassword, acceptTerms:true
+                    //     })
+                    //     .then(res => {
+                    //         setFormData({
+                    //             ...formData,
+                    //             title: "",
+                    //             firstName: "",
+                    //             lastName: "",
+                    //             email: "",
+                    //             password: "",
+                    //             confirmPassword: "",
+                    //             acceptTerms: false,
+                    //             textChange: "SUBMITTED"
+                    //         })
+                    //         toast.success(res.data.message)
+                    //     })
+                    //     .catch(err => {
+                    //         setFormData({
+                    //             ...formData,
+                    //             title: "",
+                    //             firstName: "",
+                    //             lastName: "",
+                    //             email: "",
+                    //             password: "",
+                    //             confirmPassword: "",
+                    //             acceptTerms: false,
+                    //             textChange: "JOIN"
+                    //         })
+                    //     })
                 }
 
 
@@ -164,4 +171,9 @@ const Register = () => {
     );
 };
 
-export default Register;
+const mapStateToProps = state => ({
+    auth: state.authData,
+    errors: state.errors
+})
+
+export default connect(mapStateToProps, {registerUser})(withRouter(Register));

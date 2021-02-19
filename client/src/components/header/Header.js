@@ -8,10 +8,6 @@ import ListControl from "./elements/ListControl";
 import img from '../../assets/images/profile.jpg'
 
 const Header = ({menuActiveState, setMenuActiveState, searchActiveState, setSearchActiveState}) => {
-
-    // const [menuActiveState, setMenuActiveState] = useState(false)
-    // const [searchActiveState, setSearchActiveState] = useState(false)
-
     return (
         <div className={`vertical-menu ${menuActiveState || searchActiveState ? "active" : ""}`}>
 
