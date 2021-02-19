@@ -10,6 +10,7 @@ const Role = require('_helper/role')
 
 router.post('/write', postingSchema, posting)
 router.get('/', getPost)
+router.get('/:postId', getPostDetail)
 
 function postingSchema (req, res, next) {
     const schema = Joi.object({
@@ -39,6 +40,16 @@ function getPost (req, res, next) {
         .getPost()
         .then(posts => {
             res.json(posts)
+        })
+        .catch(next)
+}
+
+function getPostDetail (req, res, next) {
+
+    blogService
+        .getPostDetail(req.params)
+        .then(post => {
+            res.json(post)
         })
         .catch(next)
 }
