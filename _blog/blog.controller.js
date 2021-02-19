@@ -8,7 +8,8 @@ const validRequest = require('_middleware/validate-request');
 const authorize = require('_middleware/authorize');
 const Role = require('_helper/role')
 
-router.post('/', postingSchema, posting)
+router.post('/write', postingSchema, posting)
+router.get('/', getPost)
 
 function postingSchema (req, res, next) {
     const schema = Joi.object({
@@ -24,13 +25,20 @@ function posting (req, res, next) {
 
     const {title, content, image} = req.body
 
-
-    console.log(req.account)
-
     blogService
         .posting({title, content, image})
         .then(posting => {
             res.json(posting)
+        })
+        .catch(next)
+}
+
+function getPost (req, res, next) {
+
+    blogService
+        .getPost()
+        .then(posts => {
+            res.json(posts)
         })
         .catch(next)
 }

@@ -1,7 +1,8 @@
 const blogModel = require('./blog.model');
 
 module.exports = {
-    posting
+    posting,
+    getPost
 }
 
 async function posting ({title, content, image, writer}) {
@@ -20,4 +21,10 @@ async function posting ({title, content, image, writer}) {
     return {
         blog
     }
+}
+
+async function getPost () {
+    const blog = await blogModel.find();
+
+    return blog.map(b => b)
 }

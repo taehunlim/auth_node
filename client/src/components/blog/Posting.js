@@ -22,10 +22,6 @@ const Posting = () => {
     const {title, content, image} = formData;
 
     const editorToHtml = draftToHtml(convertToRaw(editorState.getCurrentContent()));
-
-    console.log(editorToHtml)
-
-
     //Strip HTML
     // const contentForSubmit = editorToHtml.replace(/<[^>]+>/g, '')
 
@@ -49,7 +45,6 @@ const Posting = () => {
 
     };
 
-
     const formatBytes = (bytes, decimals = 2) => {
         if (bytes === 0) return "0 Bytes";
         const k = 1024;
@@ -64,7 +59,7 @@ const Posting = () => {
         e.preventDefault();
         if(title) {
             axios
-                .post("http://localhost:5000/blog", {
+                .post("http://localhost:5000/blog/write", {
                     title, content: editorToHtml, image:selectedFiles[0].preview
                 })
                 .then(res => {

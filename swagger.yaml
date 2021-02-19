@@ -384,7 +384,7 @@ paths:
                     type: string
                     example: "Unauthorized"
 
-  /blog:
+  /blog/write:
     post:
       tags:
         - Admin
@@ -455,3 +455,36 @@ paths:
                   message:
                     type: string
                     example: "Unauthorized"
+
+  /blog:
+    get:
+      summary: Get post
+      operationId: Get post
+      tags:
+        - Blog
+      responses:
+        "200":
+          description: Successful get post
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "601a751c66574217b1e2624a"
+                  title:
+                    type: string
+                    example: "test Title"
+                  content:
+                    type: string
+                    example: "<p>Test Content</p>"
+                  image:
+                    type: string
+                    example: "blob:http://localhost:3000/43997b9f-9139-4906-ac44-195fa6806c39"
+                  comments:
+                    type: string
+                    example: []
+                  datePublished:
+                    type: string
+                    example: "2021-02-19T11:42:06.077+00:00"
