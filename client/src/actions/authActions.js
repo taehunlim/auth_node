@@ -1,8 +1,10 @@
 import axios from 'axios';
 import {GET_ERRORS, SET_CURRENT_USER} from './types';
 import {toast} from 'react-toastify';
+import jwt_decoded from 'jwt-decode';
 
 import {authenticate} from '../helpers/auth'
+import setAuthToken from "../utills/setAuthToken";
 
 
 export const registerUser = (userData, history) => dispatch => {
@@ -27,6 +29,13 @@ export const registerUser = (userData, history) => dispatch => {
         ))
 }
 
+export const setCurrentUser = decoded => {
+    return {
+        type: SET_CURRENT_USER,
+        payload: decoded
+    }
+}
+
 export const loginUser = (userData, history) => dispatch => {
 
     dispatch({
@@ -41,6 +50,12 @@ export const loginUser = (userData, history) => dispatch => {
                 const {jwtToken} = res.data
 
                 localStorage.setItem("jwtToken", jwtToken)
+
+                setAuthToken(jwtToken)
+
+                const decoded = jwt_decoded(jwtToken)
+
+                dispatch(setCurrentUser(decoded))
             })
 
             setTimeout(() => {

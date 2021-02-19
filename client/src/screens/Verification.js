@@ -14,15 +14,17 @@ const Verification = ({match, history}) => {
         token: ""
     });
 
+    const {token} = formData;
+
     useEffect(() => {
         let token = match.params.token;
 
         if(token) {
-            setFormData({...formData, token})
+            setFormData(token)
         }
     }, [match.params])
 
-    const {token} = formData;
+
 
     const handleSubmit = e => {
         e.preventDefault();
