@@ -2,6 +2,8 @@ import axios from 'axios';
 import {GET_ERRORS, SET_CURRENT_USER} from './types';
 import {toast} from 'react-toastify';
 
+import {authenticate} from '../helpers/auth'
+
 
 export const registerUser = (userData, history) => dispatch => {
 
@@ -34,6 +36,13 @@ export const loginUser = (userData, history) => dispatch => {
     axios
         .post("http://localhost:5000/account/authenticate", userData)
         .then(res => {
+
+            authenticate(res, () => {
+                const {jwtToken} = res.data
+
+                localStorage.setItem("jwtToken", jwtToken)
+            })
+
             setTimeout(() => {
                 history.push('/.')
             })
