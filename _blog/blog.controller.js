@@ -8,7 +8,7 @@ const validRequest = require('_middleware/validate-request');
 const authorize = require('_middleware/authorize');
 const Role = require('_helper/role')
 
-router.post('/write', postingSchema, posting)
+router.post('/write', authorize(Role.Admin), postingSchema, posting)
 router.get('/', getPost)
 router.get('/:postId', getPostDetail)
 
@@ -27,7 +27,7 @@ function posting (req, res, next) {
     const {title, content, image} = req.body
 
     blogService
-        .posting({title, content, image})
+        .posting({title, content, image, writer: req.user.id})
         .then(posting => {
             res.json(posting)
         })

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {Container, Card, Row, Col} from 'react-bootstrap';
 import { Editor } from 'react-draft-wysiwyg';
 import Dropzone from 'react-dropzone';
@@ -9,7 +9,7 @@ import axios from 'axios';
 import {ToastContainer, toast} from 'react-toastify'
 
 
-const Posting = () => {
+const Posting = ({history}) => {
 
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [editorState, setEditorState] = useState(EditorState.createEmpty())
@@ -20,6 +20,8 @@ const Posting = () => {
     })
 
     const {title, content, image} = formData;
+
+    const token = localStorage.getItem('jwtToken');
 
     const editorToHtml = draftToHtml(convertToRaw(editorState.getCurrentContent()));
     //Strip HTML
@@ -42,7 +44,6 @@ const Posting = () => {
         });
 
         setSelectedFiles(files)
-
     };
 
     const formatBytes = (bytes, decimals = 2) => {
@@ -57,14 +58,23 @@ const Posting = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
+
         if(title) {
             axios
                 .post("http://localhost:5000/blog/write", {
                     title, content: editorToHtml, image:selectedFiles[0].preview
+                }, {
+                    headers: {
+                        Authorization: `bearer ${token}`
+                    }
                 })
                 .then(res => {
+                    console.log(res.data.blog._id)
                     setFormData({...formData})
                     toast.success('success')
+                    setTimeout(() => {
+                        history.push(`/post/${res.data.blog._id}`)
+                    }, 5500)
                 })
                 .catch(err => {
                     console.log(err)
@@ -205,4 +215,4 @@ const Posting = () => {
     );
 };
 
-export default Posting;
+export default withRouter(Posting);
