@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom'
 import Home from "./screens/Home";
 import Verification from "./screens/Verification";
 import Writing from "./screens/Writing";
+import PostDetail from "./screens/PostDetail";
 
 import "./assets/scss/styles.scss";
 import 'react-toastify/dist/ReactToastify.css';
@@ -23,6 +24,7 @@ function App() {
                       <Route path="/" exact render={ props => <Home {...props} /> } />
                       <Route path="/account/verify-email/:token" render={ props => <Verification {...props} /> } />
                       <Route path="/write" render={ props => <Writing {...props} /> } />
+                      <Route path="/post/" render={ props => <PostDetail {...props} /> } />
                       <Redirect to="/" />
                   </Switch>
               </BrowserRouter>
