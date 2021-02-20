@@ -15,7 +15,7 @@ import {
 
 import img from '../../assets/images/sample.png'
 
-const Detail = () => {
+const Detail = ({post}) => {
     return (
         <div className="blog-page-wrapper space-mb--r130 space-mt--r130">
                 <Container>
@@ -24,9 +24,7 @@ const Detail = () => {
                             <div className="blog-grid-post blog-grid-post--sticky space-pb--50 space-mb--40">
                                 <div className="blog-grid-post__image blog-grid-post--sticky__image space-mb--30">
                                     <img
-                                        src={
-                                            img
-                                        }
+                                        src={post.image}
                                         className="img-fluid"
                                         alt=""
                                     />
@@ -37,7 +35,7 @@ const Detail = () => {
                                             <a>REACT</a>
                                         </Link>
                                     </div>
-                                    <h2 className="post-title">Create blog to react, node</h2>
+                                    <h2 className="post-title">{post.title}</h2>
 
                                     <div className="post-info d-flex flex-wrap align-items-center space-mb--50">
                                         <div className="post-user">
@@ -64,14 +62,9 @@ const Detail = () => {
                                     </div>
 
                                     <div className="blog-post-section">
-                                        <h3 className="space-mb--30">Section Title</h3>
+                                        {/*<h3 className="space-mb--30">Section Title</h3>*/}
                                         <p className="space-mb--30">
-                                            Content Area
-                                        </p>
-
-                                        <h3 className="space-mb--30">Section Title 2</h3>
-                                        <p className="space-mb--30">
-                                            Content Area
+                                            {post.content}
                                         </p>
                                     </div>
 

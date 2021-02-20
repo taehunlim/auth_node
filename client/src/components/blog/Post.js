@@ -26,7 +26,7 @@ const Post = ({activeState, posts}) => {
                                         </div>
                                         <h2 className="post-title">
                                             <Link
-                                                to="/"
+                                                to={`/post/${post._id}`}
                                             >
                                                 <a>{post.title}</a>
                                             </Link>
@@ -35,7 +35,7 @@ const Post = ({activeState, posts}) => {
                                             {post.content}
                                         </p>
                                         <Link
-                                            to="/"
+                                            to={`/post/${post._id}`}
                                             className="blog-readmore-btn">
                                             <IoIosAdd /> read more
                                         </Link>
@@ -45,7 +45,7 @@ const Post = ({activeState, posts}) => {
                                 <Col lg={3} className="p-0">
                                     <div className="blog-grid-post__image">
                                         <Link
-                                            to="/"
+                                            to={`/post/${post._id}`}
                                             className="img-fluid"
                                         >
                                             <img

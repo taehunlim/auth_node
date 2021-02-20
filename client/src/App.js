@@ -24,7 +24,7 @@ function App() {
                       <Route path="/" exact render={ props => <Home {...props} /> } />
                       <Route path="/account/verify-email/:token" render={ props => <Verification {...props} /> } />
                       <Route path="/write" render={ props => <Writing {...props} /> } />
-                      <Route path="/post/" render={ props => <PostDetail {...props} /> } />
+                      <Route path="/post/:id" render={ props => <PostDetail {...props} /> } />
                       <Redirect to="/" />
                   </Switch>
               </BrowserRouter>

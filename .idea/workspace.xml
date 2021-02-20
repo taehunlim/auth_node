@@ -20,13 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6316a8d8-e217-4969-8a07-6640aa9f9b5b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/assets/scss/layout/_form.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/blog/Detail.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/screens/PostDetail.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/scss/layout/_blog.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/scss/layout/_blog.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/scss/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/scss/styles.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/blog/Detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/blog/Detail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/blog/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/blog/Post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/screens/PostDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/screens/PostDetail.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +146,7 @@
       <workItem from="1613644097330" duration="8056000" />
       <workItem from="1613711380716" duration="12546000" />
       <workItem from="1613730182154" duration="9363000" />
-      <workItem from="1613799137666" duration="1333000" />
+      <workItem from="1613799137666" duration="3491000" />
     </task>
     <servers />
   </component>
