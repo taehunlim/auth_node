@@ -21,8 +21,6 @@ const Posting = ({history}) => {
 
     const {title, content, image} = formData;
 
-    const token = localStorage.getItem('jwtToken');
-
     const editorToHtml = draftToHtml(convertToRaw(editorState.getCurrentContent()));
     //Strip HTML
     // const contentForSubmit = editorToHtml.replace(/<[^>]+>/g, '')
@@ -58,6 +56,8 @@ const Posting = ({history}) => {
 
     const handleSubmit = e => {
         e.preventDefault();
+
+        const token = localStorage.getItem('jwtToken');
 
         if(title) {
             axios

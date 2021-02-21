@@ -21,12 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="6316a8d8-e217-4969-8a07-6640aa9f9b5b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_blog/blog.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/_blog/blog.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/blog/Detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/blog/Detail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/blog/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/blog/Post.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/screens/PostDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/screens/PostDetail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/blog/Posting.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/blog/Posting.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +146,7 @@
       <workItem from="1613730182154" duration="9363000" />
       <workItem from="1613799137666" duration="6600000" />
       <workItem from="1613811326607" duration="12689000" />
-      <workItem from="1613881655520" duration="12471000" />
+      <workItem from="1613881655520" duration="15632000" />
     </task>
     <servers />
   </component>
