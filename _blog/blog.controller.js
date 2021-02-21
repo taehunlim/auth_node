@@ -11,7 +11,7 @@ const Role = require('_helper/role')
 router.post('/write', authorize(Role.Admin), postingSchema, posting)
 router.get('/', getPost)
 router.get('/:postId', getPostDetail)
-router.post('/comments/:postId', authorize(Role.Admin, Role.User), commentsSchema, comments)
+router.post('/comments/:postId', authorize([Role.Admin, Role.User]), commentsSchema, comments)
 
 function postingSchema (req, res, next) {
     const schema = Joi.object({

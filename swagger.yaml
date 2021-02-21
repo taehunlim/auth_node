@@ -530,3 +530,80 @@ paths:
                   datePublished:
                     type: string
                     example: "2021-02-19T11:42:06.077+00:00"
+
+  /blog/comments/{postId}:
+    post:
+      tags:
+        - Blog
+      summary: Post comment ( only registered User(Admin) )
+      description: Post comment at where you choiced post
+      operationId: Post comment
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: postId
+          schema:
+            type: string
+            minimum: 1
+          required: true
+          description: ID of the post to reply
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reply:
+                  type: string
+                  example: "new reply"
+              required:
+                - reply
+
+      responses:
+        "200":
+          description: Successful posting comment
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schema:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        example: "6031f1ffdaf6bd07c177825a"
+                      reply:
+                        type: string
+                        example: "new reply"
+                      user:
+                        type: string
+                        example: "6031f0acdaee4a0784edd6c2"
+                      handle:
+                        type: string
+                        example: "jonman"
+
+        "400":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "reply field is required"
+
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Unauthorized"
