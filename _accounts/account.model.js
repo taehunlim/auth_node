@@ -18,11 +18,11 @@ const schema = new Schema(
             type: String,
             required: true
         },
-        firstName: {
+        name: {
             type: String,
             required: true
         },
-        lastName: {
+        handle: {
             type: String,
             required: true
         },

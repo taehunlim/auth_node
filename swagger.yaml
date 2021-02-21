@@ -34,28 +34,28 @@ paths:
                 title:
                   type: string
                   example: "Mr"
-                firstName:
+                name:
                   type: string
-                  example: "lim"
-                lastName:
+                  example: "limtae"
+                handle:
                   type: string
-                  example: "tae"
+                  example: "jonman"
                 email:
                   type: string
-                  example: "limtae@example.com"
+                  example: "dsa123@naver.com"
                 password:
                   type: string
-                  example: "pass123"
+                  example: "asd123"
                 confirmPassword:
                   type: string
-                  example: "pass123"
+                  example: "asd123"
                 acceptTerms:
                   type: boolean
 
               required:
                 - title
-                - firstName
-                - lastName
+                - name
+                - handle
                 - email
                 - password
                 - confirmPassword
@@ -148,12 +148,12 @@ paths:
                   title:
                     type: string
                     example: "Mr"
-                  firstName:
+                  name:
                     type: string
-                    example: "lim"
-                  lastName:
+                    example: "limtae"
+                  handle:
                     type: string
-                    example: "tae"
+                    example: "jonman"
                   email:
                     type: string
                     example: dsa123@naver.com
@@ -169,8 +169,8 @@ paths:
                 required:
                   - id
                   - title
-                  - firstName
-                  - lastname
+                  - name
+                  - handle
                   - email
                   - role
                   - verified
@@ -301,12 +301,12 @@ paths:
                   title:
                     type: string
                     example: "mr"
-                  firsName:
+                  name:
                     type: string
-                    example: "jeremy"
-                  lastName:
+                    example: "limtae"
+                  handle:
                     type: string
-                    example: "lim"
+                    example: "jonman"
                   email:
                     type: string
                     example: "dsa123@naver.com"
@@ -357,12 +357,12 @@ paths:
                   title:
                     type: string
                     example: "mr"
-                  firsName:
+                  name:
                     type: string
-                    example: "jeremy"
-                  lastName:
+                    example: "limtae"
+                  handler:
                     type: string
-                    example: "lim"
+                    example: "jonman"
                   email:
                     type: string
                     example: "dsa123@naver.com"

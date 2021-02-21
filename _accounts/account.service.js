@@ -114,8 +114,8 @@ function generateJwtToken (account) {
 }
 
 function basicDetails (account) {
-    const {id, title, firstName, lastName, email, role, created, updated, verified} = account;
-    return {id, title, firstName, lastName, email, role, created, updated, verified}
+    const {id, title, name, handle, email, role, created, updated, verified} = account;
+    return {id, title, name, handle, email, role, created, updated, verified}
 }
 
 async function forgotPassword ({email}, origin) {

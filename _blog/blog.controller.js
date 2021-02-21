@@ -68,7 +68,7 @@ function comments (req, res, next) {
             req.params.postId,
             req.body.reply,
             req.user.id,
-            req.user.firstName
+            req.user.handle
         )
         .then(post => {
             res.json(post)

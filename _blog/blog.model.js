@@ -26,13 +26,12 @@ const schema = Schema(
             {
                 user : {
                     type : Schema.Types.ObjectId,
-                    // required : true
                 },
                 reply : {
                     type : String,
                     required : true
                 },
-                name : {
+                handle : {
                     type : String
                 },
                 date : {

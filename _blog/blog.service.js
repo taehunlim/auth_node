@@ -39,18 +39,16 @@ async function getPostDetail ({postId}) {
     }
 }
 
-async function comments (postId, reply, user, firstName) {
+async function comments (postId, reply, user, handle) {
     const blog = await blogModel.findById(postId)
 
     const newComment = {
         reply: reply,
         user: user,
-        name: firstName
+        handle: handle
     }
 
     blog.comments.unshift(newComment)
-
-    console.log(blog.comments.user)
 
     await blog.save()
 
