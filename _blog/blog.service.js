@@ -3,7 +3,8 @@ const blogModel = require('./blog.model');
 module.exports = {
     posting,
     getPost,
-    getPostDetail
+    getPostDetail,
+    comments
 }
 
 async function posting ({title, content, image, writer}) {
@@ -33,7 +34,27 @@ async function getPost () {
 async function getPostDetail ({postId}) {
     const blog = await blogModel.findById({_id: postId});
 
-    return (
+    return {
         blog
-    )
+    }
+}
+
+async function comments (postId, reply, user, firstName) {
+    const blog = await blogModel.findById(postId)
+
+    const newComment = {
+        reply: reply,
+        user: user,
+        name: firstName
+    }
+
+    blog.comments.unshift(newComment)
+
+    console.log(blog.comments.user)
+
+    await blog.save()
+
+    return {
+        blog
+    }
 }

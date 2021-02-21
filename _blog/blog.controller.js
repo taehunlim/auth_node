@@ -11,6 +11,7 @@ const Role = require('_helper/role')
 router.post('/write', authorize(Role.Admin), postingSchema, posting)
 router.get('/', getPost)
 router.get('/:postId', getPostDetail)
+router.post('/comments/:postId', authorize(Role.Admin, Role.User), commentsSchema, comments)
 
 function postingSchema (req, res, next) {
     const schema = Joi.object({
@@ -45,9 +46,30 @@ function getPost (req, res, next) {
 }
 
 function getPostDetail (req, res, next) {
-
     blogService
         .getPostDetail(req.params)
+        .then(post => {
+            res.json(post)
+        })
+        .catch(next)
+}
+
+function commentsSchema (req, res, next) {
+    const schema = Joi.object({
+        reply: Joi.string().required()
+    })
+    validRequest(req, next, schema)
+}
+
+function comments (req, res, next) {
+
+    blogService
+        .comments(
+            req.params.postId,
+            req.body.reply,
+            req.user.id,
+            req.user.firstName
+        )
         .then(post => {
             res.json(post)
         })

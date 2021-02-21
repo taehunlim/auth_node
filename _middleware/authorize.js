@@ -25,6 +25,7 @@ function authorize (roles = []) {
                 })
             }
             req.user.role = account.role;
+            req.user.firstName= account.firstName;
             req.user.ownsToken = token => !!refreshTokens.find(x => x.token === token)
             next();
         }

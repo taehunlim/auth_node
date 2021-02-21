@@ -3,13 +3,9 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const opts = {
-    timestamps: { currentTime: () => Math.floor(Date.now() / 1000) }
-}
-
 const schema = Schema(
     {
-        writer: {
+        user: {
             type : Schema.Types.ObjectId,
             ref: "account"
         },
@@ -26,13 +22,23 @@ const schema = Schema(
             // data: Buffer,
             // contentsType : String
         },
-        comments: [
+        comments : [
             {
-                text: {
-                    type: String,
-                    required: true
+                user : {
+                    type : Schema.Types.ObjectId,
+                    // required : true
                 },
-                date: Date
+                reply : {
+                    type : String,
+                    required : true
+                },
+                name : {
+                    type : String
+                },
+                date : {
+                    type : Date,
+                    default : Date.now
+                }
             }
         ],
         category: {}

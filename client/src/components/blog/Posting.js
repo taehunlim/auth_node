@@ -69,7 +69,6 @@ const Posting = ({history}) => {
                     }
                 })
                 .then(res => {
-                    console.log(res.data.blog._id)
                     setFormData({...formData})
                     toast.success('success')
                     setTimeout(() => {
