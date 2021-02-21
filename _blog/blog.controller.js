@@ -26,9 +26,10 @@ function postingSchema (req, res, next) {
 function posting (req, res, next) {
 
     const {title, content, image} = req.body
+    const {id, handle} = req.user
 
     blogService
-        .posting({title, content, image, writer: req.user.id})
+        .posting({title, content, image, user:id, handle})
         .then(posting => {
             res.json(posting)
         })

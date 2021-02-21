@@ -7,10 +7,10 @@ module.exports = {
     comments
 }
 
-async function posting ({title, content, image, writer}) {
+async function posting ({title, content, image, user, handle}) {
 
     const blog = await new blogModel({
-        title, content, image, writer
+        title, content, image, user, handle
     })
 
     // blog.image.data = fs.readFileSync('imgPath');

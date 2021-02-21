@@ -9,6 +9,9 @@ const schema = Schema(
             type : Schema.Types.ObjectId,
             ref: "account"
         },
+        handle: {
+            type: String
+        },
         title: {
             type: String,
             required: true
