@@ -2,6 +2,7 @@ import React from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import { IoIosCalendar, IoIosAdd } from "react-icons/io";
+import Moment from "react-moment";
 
 
 import img from '../../assets/images/sample.png'
@@ -21,7 +22,12 @@ const Post = ({activeState, posts}) => {
                                             <Link
                                                 to="/"
                                             >
-                                                <a> june 5, 2020</a>
+                                                <a>
+                                                    <Moment
+                                                        date={post.createdAt}
+                                                        format="D MMM YYYY HH:mm"
+                                                    />
+                                                </a>
                                             </Link>
                                         </div>
                                         <h2 className="post-title">

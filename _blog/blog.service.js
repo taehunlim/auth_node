@@ -20,9 +20,9 @@ async function posting ({title, content, image, user, handle}) {
 
     await blog.save();
 
-    return {
+    return (
         blog
-    }
+    )
 }
 
 async function getPost () {
@@ -34,9 +34,9 @@ async function getPost () {
 async function getPostDetail ({postId}) {
     const blog = await blogModel.findById({_id: postId});
 
-    return {
+    return (
         blog
-    }
+    )
 }
 
 async function comments (postId, reply, user, handle) {
@@ -52,7 +52,7 @@ async function comments (postId, reply, user, handle) {
 
     await blog.save()
 
-    return {
+    return (
         blog
-    }
+    )
 }

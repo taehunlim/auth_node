@@ -12,6 +12,7 @@ import {
     IoMdPricetags,
     IoIosRedo
 } from "react-icons/io";
+import Moment from "react-moment";
 
 import img from '../../assets/images/sample.png'
 
@@ -41,13 +42,18 @@ const Detail = ({post}) => {
                                         <div className="post-user">
                                             <IoIosPerson /> By
                                             <Link to="/">
-                                                <a> writer </a>
+                                                <a> {post.handle} </a>
                                             </Link>
                                         </div>
                                         <div className="post-date mb-0 space-pl--30">
                                             <IoIosCalendar />
                                             <Link to="/">
-                                                <a>Feb 2, 2021</a>
+                                                <a>
+                                                    <Moment
+                                                        date={post.createdAt}
+                                                        format="D MMM YYYY HH:mm"
+                                                    />
+                                                </a>
                                             </Link>
                                         </div>
                                         <div className="post-category space-pl--30">
@@ -57,7 +63,9 @@ const Detail = ({post}) => {
                                         </div>
                                         <div className="post-comment space-pl--30">
                                             <IoMdChatbubbles />
-                                            <a href="#"> 2 Comments</a>
+                                            <a href="#">
+                                                {post.comments && post.comments.length} Comments
+                                            </a>
                                         </div>
                                     </div>
 
@@ -115,54 +123,64 @@ const Detail = ({post}) => {
 
                             <div className="comments-wrapper space-mb--40">
                                 <h2 className="comment-title space-mb--30">
-                                    Comments <span>(2)</span>
+                                    Comments <span>({post.comments && post.comments.length})</span>
                                 </h2>
 
-                                <div className="blog-comment">
-                                    <div className="blog-comment__image">
-                                        <img
-                                            src={img}
-                                            className="img-fluid"
-                                            alt=""
-                                        />
+                                {post.comments && post.comments.map(reply => (
+                                    <div className="blog-comment">
+                                        <div className="blog-comment__image">
+                                            <img
+                                                src={img}
+                                                className="img-fluid"
+                                                alt=""
+                                            />
+                                        </div>
+                                        <div className="blog-comment__content">
+                                            <p className="username">
+                                                {reply.handle}
+                                                <span className="date">
+                                                    <Moment
+                                                        date={reply.date}
+                                                        format="D MMM YYYY HH:mm"
+                                                    />
+                                                </span>
+                                            </p>
+
+                                            <p className="message">
+                                                {reply.reply}
+                                            </p>
+
+                                            <a href="#" className="reply-link">
+                                                <IoIosRedo /> reply
+                                            </a>
+                                        </div>
                                     </div>
-                                    <div className="blog-comment__content">
-                                        <p className="username">
-                                            Name <span className="date">/ Feb 2, 2021</span>
-                                        </p>
+                                ))}
 
-                                        <p className="message">
-                                            Comment
-                                        </p>
+                                {/*--- reply of reply ---*/}
 
-                                        <a href="#" className="reply-link">
-                                            <IoIosRedo /> reply
-                                        </a>
-                                    </div>
-                                </div>
+                                {/*<div className="blog-comment blog-comment--reply">*/}
+                                {/*    <div className="blog-comment__image">*/}
+                                {/*        <img*/}
+                                {/*            src={img}*/}
+                                {/*            className="img-fluid"*/}
+                                {/*            alt=""*/}
+                                {/*        />*/}
+                                {/*    </div>*/}
+                                {/*    <div className="blog-comment__content">*/}
+                                {/*        <p className="username">*/}
+                                {/*            Name <span className="date">/ Feb 2, 2021</span>*/}
+                                {/*        </p>*/}
 
-                                <div className="blog-comment blog-comment--reply">
-                                    <div className="blog-comment__image">
-                                        <img
-                                            src={img}
-                                            className="img-fluid"
-                                            alt=""
-                                        />
-                                    </div>
-                                    <div className="blog-comment__content">
-                                        <p className="username">
-                                            Name <span className="date">/ Feb 2, 2021</span>
-                                        </p>
+                                {/*        <p className="message">*/}
+                                {/*            Thanks for*/}
+                                {/*        </p>*/}
 
-                                        <p className="message">
-                                            Thanks for
-                                        </p>
-
-                                        <a href="#" className="reply-link">
-                                            <IoIosRedo /> reply
-                                        </a>
-                                    </div>
-                                </div>
+                                {/*        <a href="#" className="reply-link">*/}
+                                {/*            <IoIosRedo /> reply*/}
+                                {/*        </a>*/}
+                                {/*    </div>*/}
+                                {/*</div>*/}
                             </div>
 
                             <div className="comment-form">
