@@ -18,7 +18,7 @@ const Home = () => {
 
     useEffect(() => {
         getData()
-    }, [getData])
+    }, {getData})
 
     return (
         <div>

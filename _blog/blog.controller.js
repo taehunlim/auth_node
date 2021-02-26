@@ -8,10 +8,13 @@ const validRequest = require('_middleware/validate-request');
 const authorize = require('_middleware/authorize');
 const Role = require('_helper/role')
 
-router.post('/write', authorize(Role.Admin), postingSchema, posting)
 router.get('/', getPost)
 router.get('/:postId', getPostDetail)
+
+router.post('/write', authorize(Role.Admin), postingSchema, posting)
 router.post('/comments/:postId', authorize([Role.Admin, Role.User]), commentsSchema, comments)
+
+router.patch('/:postId/:commentId', authorize([Role.Admin, Role.User]), deleteComment)
 
 function postingSchema (req, res, next) {
     const schema = Joi.object({
@@ -73,6 +76,17 @@ function comments (req, res, next) {
         )
         .then(post => {
             res.json(post)
+        })
+        .catch(next)
+}
+
+
+function deleteComment (req, res, next) {
+
+    blogService
+        .deleteComment(req.params, req.user)
+        .then(comment => {
+            res.json(comment)
         })
         .catch(next)
 }

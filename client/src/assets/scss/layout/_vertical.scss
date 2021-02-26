@@ -440,6 +440,12 @@
 }
 
 .profile-caption {
+
+  a {
+    &:hover {
+      color: black;
+    }
+  }
   .name {
     font-size: 24px;
     font-weight: 600;

@@ -4,7 +4,8 @@ module.exports = {
     posting,
     getPost,
     getPostDetail,
-    comments
+    comments,
+    deleteComment
 }
 
 async function posting ({title, content, image, user, handle}) {
@@ -55,4 +56,51 @@ async function comments (postId, reply, user, handle) {
     return (
         blog
     )
+}
+
+// async function getTheComment ({commentId}) {
+//
+//     const blog = await blogModel.findOne({comments: {$elemMatch: {_id: commentId}}})
+//
+//     if(!blog) throw "The comment does not exists";
+//
+//     return (
+//         blog.comments.filter(cm => cm._id.toString() === commentId )
+//     );
+// }
+
+async function deleteComment ({commentId}, user) {
+
+    const commentUser = await blogModel.find()
+
+    const blog = await blogModel.update(
+        {
+            $pull: user.role === "Admin" ? {
+                comments: {
+                    _id: commentId
+                }
+            } : {
+                comments: {
+                    _id: commentId,
+                    user: user.id
+                }
+            }
+        }
+    );
+
+    const filtering = commentUser.map(post =>
+        post.comments.filter(comment =>
+            (comment.user.toString() === user.id || user.role === 'Admin') &&
+            comment._id.toString() === commentId)
+            .find(comment =>
+                (comment._id.toString() === commentId))
+    ).filter(o => o).length === 0
+
+
+    if(filtering)
+        throw "This comment does not exist or is not your comment."
+
+    else
+        return blog
+
 }

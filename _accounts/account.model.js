@@ -24,7 +24,8 @@ const schema = new Schema(
         },
         handle: {
             type: String,
-            required: true
+            required: true,
+            unique: true
         },
         acceptTerms: Boolean,
         role: {

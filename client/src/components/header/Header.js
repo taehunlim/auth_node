@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 import HeaderContents from "./elements/HeaderContents";
 import HeaderSearch from "./elements/HeaderSearch";
@@ -37,7 +38,9 @@ const Header = ({menuActiveState, setMenuActiveState, searchActiveState, setSear
                 <HeaderContents/> :
                 <div className="profile text-center">
                     <div className="profile-caption">
-                        <h2 className="name">우리집 존만이의 <br/> 개발 노트</h2>
+                        <Link to="/">
+                            <h2 className="name">우리집 존만이의 <br/> 개발 노트</h2>
+                        </Link>
                     </div>
                     <div className="profile-image">
                         <img
