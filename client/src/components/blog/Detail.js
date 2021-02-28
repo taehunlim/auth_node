@@ -14,8 +14,9 @@ import {
 } from "react-icons/io";
 import {ToastContainer, toast} from 'react-toastify'
 import axios from "axios";
-
 import Moment from "react-moment";
+
+import {isAuth} from "../../helpers/auth";
 
 import img from '../../assets/images/sample.png'
 
@@ -24,8 +25,15 @@ const Detail = ({post}) => {
     const [formData, setFormData] = useState({
         reply: ""
     })
+    const [authButton, setAuthButton] = useState(false);
+    const [selectedData, setSelectedData] = useState(
+        post.comments ? post.comments[0]._id : ""
+    )
+    const [deleteButton, setDeleteButton] = useState(false)
 
     const {reply} = formData;
+
+    const userVerification = JSON.parse(localStorage.getItem("user")).id;
 
     const handleChange = text => e => {
         setFormData({...formData, [text]: e.target.value});
@@ -60,6 +68,26 @@ const Detail = ({post}) => {
         }
     };
 
+    const deleteSubmit = e => {
+        e.preventDefault();
+
+        const token = localStorage.getItem("jwtToken");
+
+        axios
+            .patch(`/blog/${post._id}/${selectedData}`, {}, {
+                headers: {
+                    Authorization: `bearer ${token}`
+                }
+            })
+            .then(() => {
+                window.location.replace(`/post/${post._id}`)
+            })
+            .catch(() => {
+                console.log("fail")
+            })
+    }
+
+
     return (
         <div className="blog-page-wrapper space-mb--r130 space-mt--r130">
             <ToastContainer/>
@@ -77,7 +105,7 @@ const Detail = ({post}) => {
                             <div className="blog-grid-post__content blog-grid-post--sticky__content">
                                 <div className="post-category space-mb--10">
                                     <Link to="/">
-                                        <a>REACT</a>
+                                        REACT
                                     </Link>
                                 </div>
                                 <h2 className="post-title">{post.title}</h2>
@@ -86,23 +114,23 @@ const Detail = ({post}) => {
                                     <div className="post-user">
                                         <IoIosPerson /> By
                                         <Link to="/">
-                                            <a> {post.handle} </a>
+                                            {post.handle}
                                         </Link>
                                     </div>
                                     <div className="post-date mb-0 space-pl--30">
                                         <IoIosCalendar />
                                         <Link to="/">
-                                            <a>
-                                                <Moment
-                                                    date={post.createdAt}
-                                                    format="D MMM YYYY HH:mm"
-                                                />
-                                            </a>
+
+                                            <Moment
+                                                date={post.createdAt}
+                                                format="D MMM YYYY HH:mm"
+                                            />
+
                                         </Link>
                                     </div>
                                     <div className="post-category space-pl--30">
                                         <Link to="/">
-                                            <a>REACT</a>
+                                            REACT
                                         </Link>
                                     </div>
                                     <div className="post-comment space-pl--30">
@@ -171,7 +199,7 @@ const Detail = ({post}) => {
                             </h2>
 
                             {post.comments && post.comments.map(reply => (
-                                <div className="blog-comment">
+                                <div className="blog-comment" key={reply._id}>
                                     <div className="blog-comment__image">
                                         <img
                                             src={img}
@@ -180,15 +208,66 @@ const Detail = ({post}) => {
                                         />
                                     </div>
                                     <div className="blog-comment__content">
-                                        <p className="username">
+
+                                        {/*<div className="edit-form">*/}
+                                        {/*    <form>*/}
+                                        {/*          <textarea*/}
+                                        {/*              rows={8}*/}
+                                        {/*              placeholder="Message"*/}
+                                        {/*              defaultValue={""}*/}
+                                        {/*              className="border-top"*/}
+                                        {/*              onChange={handleChange('reply')}*/}
+                                        {/*          />*/}
+                                        {/*    </form>*/}
+                                        {/*</div>*/}
+
+                                        <div className="username">
                                             {reply.handle}
+
+                                            {reply.user && reply.user === userVerification ||
+                                            isAuth() && isAuth().role === 'Admin' ? (
+                                                <div className="menu">
+
+                                                    <button
+                                                        onClick={() => {
+                                                            setAuthButton(!authButton)
+                                                            setSelectedData(reply._id)
+                                                        }}
+                                                    >
+                                                        ⋮
+                                                    </button>
+
+                                                    {authButton === true &&
+                                                    selectedData === reply._id ?
+                                                        <ul>
+                                                            <li>
+                                                                <button>
+                                                                    수정
+                                                                </button>
+                                                            </li>/
+                                                            <li>
+                                                                <form onSubmit={deleteSubmit}>
+                                                                    <button
+                                                                        type="submit"
+                                                                    >
+                                                                        삭제
+                                                                    </button>
+                                                                </form>
+                                                            </li>
+                                                        </ul>
+                                                        : ""
+                                                    }
+                                                </div>
+                                                ) : ""
+                                            }
+
                                             <span className="date">
                                                 <Moment
                                                     date={reply.date}
                                                     format="D MMM YYYY HH:mm"
                                                 />
                                             </span>
-                                        </p>
+                                        </div>
 
                                         <p className="message">
                                             {reply.reply}
@@ -253,7 +332,6 @@ const Detail = ({post}) => {
                                                   cols={30}
                                                   rows={10}
                                                   placeholder="Message"
-                                                  defaultValue={""}
                                                   className="border-top"
                                                   onChange={handleChange('reply')}
                                                   value={reply}

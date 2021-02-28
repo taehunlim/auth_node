@@ -101,39 +101,49 @@
       }
     }
   }
+}
 
-  &.order-tracking-form {
-    label {
-      font-size: 20px;
-      line-height: 32px;
+.edit-form {
+  form {
+    textarea {
+      font-size: 14px;
+
+      display: block;
+
+      width: 100%;
+      padding: 9.5px 0;
+
+      transition: all 0.3s ease-in-out;
 
       color: $black--two;
+
+      border: 2px solid $grey--eleven !important;
+      background: transparent;
+
+      &:hover,
+      &:active,
+      &:focus {
+        border-bottom-color: $black--two;
+      }
+    }
+    ::placeholder {
+      opacity: 1; /* Firefox */
+
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: $grey--seven;
     }
 
-    .order-tracking-button {
-      padding: 10px 65px;
+    :-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: $grey--seven;
+    }
+
+    ::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: $grey--seven;
     }
   }
 }
-
-
-.order-tracking-box {
-  padding: 50px;
-
-  background-color: $grey--twentyOne;
-
-  @include respond(extra-small-mobile) {
-    padding: 20px;
-  }
-
-  .info-text {
-    line-height: 1.5;
-  }
-}
-
-
-
-
 
 /*=====  End of form  ======*/
 

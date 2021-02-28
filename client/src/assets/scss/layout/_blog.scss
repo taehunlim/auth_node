@@ -398,8 +398,30 @@
       font-size: 18px;
       font-weight: 400;
       line-height: 19px;
+      margin-bottom: 15px;
 
       color: $black--two;
+    }
+
+    .menu {
+      margin-left: 10px;
+      display: inline;
+
+      button {
+        border: none;
+        background: none;
+        padding: 0px;
+        margin: 0px 5px;
+      }
+
+      & > ul {
+        display: inline-block;
+        margin-bottom: 0px;
+        position: absolute;
+        & > li {
+          display: inline-block;
+        }
+      }
     }
 
     .date {
