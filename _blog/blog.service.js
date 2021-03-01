@@ -5,7 +5,8 @@ module.exports = {
     getPost,
     getPostDetail,
     comments,
-    deleteComment
+    deleteComment,
+    editPost
 }
 
 async function posting ({title, content, image, user, handle}) {
@@ -103,4 +104,19 @@ async function deleteComment ({commentId}, user) {
     else
         return blog
 
+}
+
+async function editPost ({postId, title, content, image}) {
+    const blog = await blogModel.update(
+        {
+            _id: postId,
+            title,
+            content,
+            image
+        }
+    )
+
+    return (
+        blog
+    )
 }

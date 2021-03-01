@@ -15,6 +15,7 @@ router.post('/write', authorize(Role.Admin), postingSchema, posting)
 router.post('/comments/:postId', authorize([Role.Admin, Role.User]), commentsSchema, comments)
 
 router.patch('/:postId/:commentId', authorize([Role.Admin, Role.User]), deleteComment)
+router.patch('/write/:postId', authorize(Role.Admin), editPostSchema, editPost)
 
 function postingSchema (req, res, next) {
     const schema = Joi.object({
@@ -87,6 +88,29 @@ function deleteComment (req, res, next) {
         .deleteComment(req.params, req.user)
         .then(comment => {
             res.json(comment)
+        })
+        .catch(next)
+}
+
+function editPostSchema (req, res, next) {
+    const schema = Joi.object({
+        title: Joi.string().required(),
+        content: Joi.string().required(),
+        image: Joi.string(),
+    })
+
+    validRequest(req, next, schema)
+}
+
+function editPost (req, res, next) {
+
+    const {title, content, image} = req.body
+    const {postId} = req.params
+
+    blogService
+        .editPost({postId, title, content, image})
+        .then(post => {
+            res.json(post)
         })
         .catch(next)
 }

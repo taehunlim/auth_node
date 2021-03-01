@@ -21,12 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="6316a8d8-e217-4969-8a07-6640aa9f9b5b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_blog/blog.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/_blog/blog.controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_blog/blog.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/_blog/blog.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/scss/layout/_blog.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/scss/layout/_blog.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/scss/layout/_form.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/scss/layout/_form.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/blog/Detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/blog/Detail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/blog/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/blog/Post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/swagger.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +158,8 @@
       <workItem from="1614249189437" duration="4640000" />
       <workItem from="1614313424321" duration="11662000" />
       <workItem from="1614339168828" duration="4933000" />
-      <workItem from="1614490263771" duration="16153000" />
+      <workItem from="1614490263771" duration="17370000" />
+      <workItem from="1614572936892" duration="2686000" />
     </task>
     <servers />
   </component>
@@ -192,22 +191,22 @@
     </state>
     <state x="822" y="262" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1680.970@0.23.1680.970" timestamp="1611652316625" />
     <state x="822" y="262" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1680.962@0.25.1680.962" timestamp="1613714836936" />
-    <state width="1019" height="251" key="GridCell.Tab.0.bottom" timestamp="1614490478858">
+    <state width="1019" height="251" key="GridCell.Tab.0.bottom" timestamp="1614509665494">
       <screen x="0" y="25" width="1680" height="962" />
     </state>
-    <state width="1019" height="251" key="GridCell.Tab.0.bottom/0.25.1680.962@0.25.1680.962" timestamp="1614490478858" />
-    <state width="1019" height="251" key="GridCell.Tab.0.center" timestamp="1614490478857">
+    <state width="1019" height="251" key="GridCell.Tab.0.bottom/0.25.1680.962@0.25.1680.962" timestamp="1614509665494" />
+    <state width="1019" height="251" key="GridCell.Tab.0.center" timestamp="1614509665493">
       <screen x="0" y="25" width="1680" height="962" />
     </state>
-    <state width="1019" height="251" key="GridCell.Tab.0.center/0.25.1680.962@0.25.1680.962" timestamp="1614490478857" />
-    <state width="1019" height="251" key="GridCell.Tab.0.left" timestamp="1614490478856">
+    <state width="1019" height="251" key="GridCell.Tab.0.center/0.25.1680.962@0.25.1680.962" timestamp="1614509665493" />
+    <state width="1019" height="251" key="GridCell.Tab.0.left" timestamp="1614509665492">
       <screen x="0" y="25" width="1680" height="962" />
     </state>
-    <state width="1019" height="251" key="GridCell.Tab.0.left/0.25.1680.962@0.25.1680.962" timestamp="1614490478856" />
-    <state width="1019" height="251" key="GridCell.Tab.0.right" timestamp="1614490478857">
+    <state width="1019" height="251" key="GridCell.Tab.0.left/0.25.1680.962@0.25.1680.962" timestamp="1614509665492" />
+    <state width="1019" height="251" key="GridCell.Tab.0.right" timestamp="1614509665493">
       <screen x="0" y="25" width="1680" height="962" />
     </state>
-    <state width="1019" height="251" key="GridCell.Tab.0.right/0.25.1680.962@0.25.1680.962" timestamp="1614490478857" />
+    <state width="1019" height="251" key="GridCell.Tab.0.right/0.25.1680.962@0.25.1680.962" timestamp="1614509665493" />
     <state x="921" y="245" width="595" height="522" key="find.popup" timestamp="1614507964525">
       <screen x="0" y="25" width="1680" height="962" />
     </state>

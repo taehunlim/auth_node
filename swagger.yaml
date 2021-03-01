@@ -666,3 +666,69 @@ paths:
                   message:
                     type: string
                     example: "Unauthorized"
+
+  /blog/write/{postId}:
+    patch:
+      tags:
+        - Admin
+      summary: edit posting
+      description: Only admin can upload
+      operationId: edit posting
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: postId
+          schema:
+            type: string
+            minimum: 1
+          required: true
+          description: ID of the post to edit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: "Chic Fashion Phenomenon"
+                content:
+                  type: string
+                  example: "Michele seemed to say, was the 21st-century Gucci girl, an eccentric, fresh-faced weirdo who wasn’t afraid to wear backless fur-lined loafers, to personify the idea of “ugly pretty.”"
+                image:
+                  type: string
+                  example: "https://user-images.githubusercontent.com/54699548/108054435-fe109300-7091-11eb-9a41-84a6d9407b4f.png"
+                comments:
+                  type: string
+                datePublished:
+                  type: string
+                  example: "2021-02-17T07:43:02.638Z"
+
+              required:
+                - title
+                - content
+
+      responses:
+        "200":
+          description: Successful upload
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _message:
+                    type: string
+                    example: "Modified"
+
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Unauthorized"

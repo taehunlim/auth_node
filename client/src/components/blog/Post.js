@@ -12,8 +12,8 @@ const Post = ({activeState, posts}) => {
         <div className={`main-content space-mb--r130 space-mt--r130 ${activeState ? "active": ""}`}>
             <Container>
                 <Row>
-                    {posts && posts.map(post => (
-                        <Col lg={12} className="space-mb--60">
+                    {posts && posts.map((post, i) => (
+                        <Col lg={12} className="space-mb--60" key={i}>
                             <div className="blog-grid-post blog-grid-post--list">
                                 <Col lg={9} className="p-0">
                                     <div className="blog-grid-post__content">
@@ -22,19 +22,17 @@ const Post = ({activeState, posts}) => {
                                             <Link
                                                 to="/"
                                             >
-                                                <a>
-                                                    <Moment
-                                                        date={post.createdAt}
-                                                        format="D MMM YYYY HH:mm"
-                                                    />
-                                                </a>
+                                                <Moment
+                                                    date={post.createdAt}
+                                                    format="D MMM YYYY HH:mm"
+                                                />
                                             </Link>
                                         </div>
                                         <h2 className="post-title">
                                             <Link
                                                 to={`/post/${post._id}`}
                                             >
-                                                <a>{post.title}</a>
+                                                {post.title}
                                             </Link>
                                         </h2>
                                         <p className="post-excerpt">
