@@ -109,7 +109,6 @@ async function deleteComment ({commentId}, user) {
 async function editPost ({postId, title, content, image}) {
     const blog = await blogModel.update(
         {
-            _id: postId,
             title,
             content,
             image

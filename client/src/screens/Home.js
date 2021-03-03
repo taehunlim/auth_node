@@ -18,7 +18,7 @@ const Home = () => {
 
     useEffect(() => {
         getData()
-    }, {getData})
+    }, [setPosts])
 
     return (
         <div>

@@ -4,6 +4,7 @@ import Home from "./screens/Home";
 import Verification from "./screens/Verification";
 import Writing from "./screens/Writing";
 import PostDetail from "./screens/PostDetail";
+import Editing from "./screens/Editing";
 
 import "./assets/scss/styles.scss";
 import 'react-toastify/dist/ReactToastify.css';
@@ -25,6 +26,7 @@ function App() {
                       <Route path="/account/verify-email/:token" render={ props => <Verification {...props} /> } />
                       <Route path="/write" render={ props => <Writing {...props} /> } />
                       <Route path="/post/:id" render={ props => <PostDetail {...props} /> } />
+                      <Route path="/edit/:id" exact render={ props => <Editing {...props} /> } />
                       <Redirect to="/" />
                   </Switch>
               </BrowserRouter>

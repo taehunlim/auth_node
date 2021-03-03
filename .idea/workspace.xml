@@ -21,10 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="6316a8d8-e217-4969-8a07-6640aa9f9b5b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_blog/blog.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/_blog/blog.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_blog/blog.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/_blog/blog.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/assets/scss/layout/_vertical.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/scss/layout/_vertical.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/blog/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/blog/Post.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/swagger.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +31,12 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
   </component>
   <component name="ProjectId" id="1nbGwHxomiVpqVWrJmPqfS4SRV9" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -159,7 +163,12 @@
       <workItem from="1614313424321" duration="11662000" />
       <workItem from="1614339168828" duration="4933000" />
       <workItem from="1614490263771" duration="17370000" />
-      <workItem from="1614572936892" duration="2686000" />
+      <workItem from="1614572936892" duration="13203000" />
+      <workItem from="1614595492275" duration="5688000" />
+      <workItem from="1614601478059" duration="1811000" />
+      <workItem from="1614676959320" duration="5316000" />
+      <workItem from="1614747860094" duration="6107000" />
+      <workItem from="1614770400153" duration="3131000" />
     </task>
     <servers />
   </component>
@@ -207,11 +216,11 @@
       <screen x="0" y="25" width="1680" height="962" />
     </state>
     <state width="1019" height="251" key="GridCell.Tab.0.right/0.25.1680.962@0.25.1680.962" timestamp="1614509665493" />
-    <state x="921" y="245" width="595" height="522" key="find.popup" timestamp="1614507964525">
+    <state x="921" y="245" width="595" height="522" key="find.popup" timestamp="1614681031055">
       <screen x="0" y="25" width="1680" height="962" />
     </state>
     <state x="921" y="245" width="595" height="522" key="find.popup/-1048.25.1048.745/0.25.1680.962@0.25.1680.962" timestamp="1613015958076" />
-    <state x="921" y="245" width="595" height="522" key="find.popup/0.25.1680.962@0.25.1680.962" timestamp="1614507964525" />
+    <state x="921" y="245" width="595" height="522" key="find.popup/0.25.1680.962@0.25.1680.962" timestamp="1614681031055" />
     <state x="882" y="236" width="670" height="671" key="search.everywhere.popup" timestamp="1613909557638">
       <screen x="0" y="25" width="1680" height="962" />
     </state>

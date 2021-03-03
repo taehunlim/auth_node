@@ -10,7 +10,8 @@ import {
     IoLogoGoogleplus,
     IoLogoPinterest,
     IoMdPricetags,
-    IoIosRedo
+    IoIosRedo,
+    IoIosConstruct
 } from "react-icons/io";
 import {ToastContainer, toast} from 'react-toastify'
 import axios from "axios";
@@ -27,7 +28,7 @@ const Detail = ({post}) => {
     })
     const [authButton, setAuthButton] = useState(false);
     const [selectedData, setSelectedData] = useState(
-        post.comments ? post.comments[0]._id : ""
+        post.comments ? post.comments.filter(c => c._id) : ""
     )
     const [deleteButton, setDeleteButton] = useState(false)
 
@@ -74,7 +75,7 @@ const Detail = ({post}) => {
         const token = localStorage.getItem("jwtToken");
 
         axios
-            .patch(`/blog/${post._id}/${selectedData}`, {}, {
+            .put(`/blog/${post._id}/${selectedData}`, {}, {
                 headers: {
                     Authorization: `bearer ${token}`
                 }
@@ -91,6 +92,12 @@ const Detail = ({post}) => {
     return (
         <div className="blog-page-wrapper space-mb--r130 space-mt--r130">
             <ToastContainer/>
+            <Link
+                to={`/edit/${post._id}`}
+                className="blog-grid-editBtn"
+            >
+                <IoIosConstruct/>
+            </Link>
             <Container>
                 <Row>
                     <Col lg={12}>
@@ -119,14 +126,14 @@ const Detail = ({post}) => {
                                     </div>
                                     <div className="post-date mb-0 space-pl--30">
                                         <IoIosCalendar />
-                                        <Link to="/">
+                                        <p>
 
                                             <Moment
                                                 date={post.createdAt}
                                                 format="D MMM YYYY HH:mm"
                                             />
 
-                                        </Link>
+                                        </p>
                                     </div>
                                     <div className="post-category space-pl--30">
                                         <Link to="/">
@@ -143,9 +150,10 @@ const Detail = ({post}) => {
 
                                 <div className="blog-post-section">
                                     {/*<h3 className="space-mb--30">Section Title</h3>*/}
-                                    <p className="space-mb--30">
-                                        {post.content}
-                                    </p>
+                                    <p
+                                        className="space-mb--30"
+                                        dangerouslySetInnerHTML={{__html: post.content}}
+                                    />
                                 </div>
 
                                 <Row className="space-mt--30 align-items-center">

@@ -14,8 +14,8 @@ router.get('/:postId', getPostDetail)
 router.post('/write', authorize(Role.Admin), postingSchema, posting)
 router.post('/comments/:postId', authorize([Role.Admin, Role.User]), commentsSchema, comments)
 
-router.patch('/:postId/:commentId', authorize([Role.Admin, Role.User]), deleteComment)
-router.patch('/write/:postId', authorize(Role.Admin), editPostSchema, editPost)
+router.put('/:postId/:commentId', authorize([Role.Admin, Role.User]), deleteComment)
+router.patch('/edit/:postId', authorize(Role.Admin), editPostSchema, editPost)
 
 function postingSchema (req, res, next) {
     const schema = Joi.object({

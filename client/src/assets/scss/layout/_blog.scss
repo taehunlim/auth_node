@@ -11,6 +11,19 @@
   }
 }
 
+.blog-grid-editBtn {
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  z-index: 9999;
+  border: none;
+  background: none;
+
+  @media (max-width: 1239px) {
+    top: $header-height + 25px;
+  }
+}
+
 .blog-grid-post {
   &__image {
     a {
@@ -24,7 +37,7 @@
   &__content {
     .post-date {
       margin-bottom: 15px;
-      a {
+      p {
         font-size: 14px;
         line-height: 18px;
 
@@ -37,7 +50,7 @@
 
         &:hover {
           color: $black--two;
-          border-bottom: 1px solid $grey--six;
+          //border-bottom: 1px solid $grey--six;
         }
       }
 

@@ -1,15 +1,17 @@
-import React, {useState} from 'react';
-import {Link, withRouter} from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import {Container, Card, Row, Col} from 'react-bootstrap';
 import { Editor } from 'react-draft-wysiwyg';
 import Dropzone from 'react-dropzone';
-import {EditorState, convertToRaw} from 'draft-js';
+import {EditorState, convertToRaw, ContentState} from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
 import axios from 'axios';
 import {ToastContainer, toast} from 'react-toastify'
 
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
-const Posting = ({history}) => {
+const Posting = ({post}) => {
 
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [editorState, setEditorState] = useState(EditorState.createEmpty())
@@ -19,7 +21,7 @@ const Posting = ({history}) => {
         image: ""
     })
 
-    const {title, content, image} = formData;
+    const {title} = formData;
 
     const editorToHtml = draftToHtml(convertToRaw(editorState.getCurrentContent()));
     //Strip HTML
@@ -58,31 +60,70 @@ const Posting = ({history}) => {
         e.preventDefault();
 
         const token = localStorage.getItem('jwtToken');
+        const selectedImg = selectedFiles[0] ? selectedFiles[0].preview : ""
 
         if(title) {
-            axios
-                .post("http://localhost:5000/blog/write", {
-                    title, content: editorToHtml, image:selectedFiles[0].preview
-                }, {
-                    headers: {
-                        Authorization: `bearer ${token}`
-                    }
-                })
-                .then(res => {
-                    setFormData({...formData})
-                    toast.success('success')
-                    setTimeout(() => {
-                        history.push(`/post/${res.data.blog._id}`)
-                    }, 5500)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
+            if(post) {
+                axios
+                    .patch(`/blog/edit/${post._id}`, {
+                        title, content: editorToHtml, image: selectedImg
+                    }, {
+                        headers: {
+                            Authorization: `bearer ${token}`
+                        }
+                    })
+                    .then(res => {
+                        setFormData({...formData})
+                        toast.success('success')
+                        setTimeout(() => {
+                            window.location.replace(`/post/${post._id}`)
+                        }, 5500)
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+            }
+            else {
+                axios
+                    .post("http://localhost:5000/blog/write", {
+                        title, content: editorToHtml, image: selectedFiles
+                    }, {
+                        headers: {
+                            Authorization: `bearer ${token}`
+                        }
+                    })
+                    .then(res => {
+                        setFormData({...formData})
+                        toast.success('success')
+                        setTimeout(() => {
+                            window.location.replace(`/post/${res.data._id}`)
+                        }, 5500)
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+            }
+
         }
         else {
             toast.error("title or content field is empty")
         }
     }
+
+    useEffect(() => {
+        if (post && post.content) {
+            const blocksFromHtml = htmlToDraft(post.content);
+
+            if(blocksFromHtml) {
+                const { contentBlocks, entityMap } = blocksFromHtml;
+                const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+                const editorState = EditorState.createWithContent(contentState);
+
+                setEditorState(editorState)
+                setFormData({...formData, title: post.title})
+            }
+        }
+    }, [post])
 
     return (
         <div className="space-mt--r130 write">
@@ -129,8 +170,6 @@ const Posting = ({history}) => {
                             editorState={editorState}
                             onEditorStateChange={onEditorStateChange}
                         />
-
-                        <div dangerouslySetInnerHTML={{__html: editorToHtml}} />
                     </Card.Body>
 
                     <Card.Body>
@@ -214,4 +253,4 @@ const Posting = ({history}) => {
     );
 };
 
-export default withRouter(Posting);
+export default Posting;

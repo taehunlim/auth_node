@@ -16,12 +16,14 @@ const PostDetail = () => {
 
     const getData = async () => {
         const {data} = await axios.get(`/blog/${id}`)
+
         setPosts(data)
+
     };
 
     useEffect(() => {
         getData()
-    }, {getData})
+    }, [setPosts])
 
     return (
         <div>

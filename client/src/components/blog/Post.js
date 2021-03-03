@@ -19,14 +19,12 @@ const Post = ({activeState, posts}) => {
                                     <div className="blog-grid-post__content">
                                         <div className="post-date">
                                             <IoIosCalendar />
-                                            <Link
-                                                to="/"
-                                            >
+                                            <p>
                                                 <Moment
-                                                    date={post.createdAt}
+                                                    date={post.updatedAt}
                                                     format="D MMM YYYY HH:mm"
                                                 />
-                                            </Link>
+                                            </p>
                                         </div>
                                         <h2 className="post-title">
                                             <Link
@@ -36,7 +34,7 @@ const Post = ({activeState, posts}) => {
                                             </Link>
                                         </h2>
                                         <p className="post-excerpt">
-                                            {post.content}
+                                            {post.content.replace(/<[^>]+>/g, '')}
                                         </p>
                                         <Link
                                             to={`/post/${post._id}`}
