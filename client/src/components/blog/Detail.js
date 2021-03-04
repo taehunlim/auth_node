@@ -27,10 +27,10 @@ const Detail = ({post}) => {
         reply: ""
     })
     const [authButton, setAuthButton] = useState(false);
+    const [editButton, setEditButton] = useState(false);
     const [selectedData, setSelectedData] = useState(
         post.comments ? post.comments.filter(c => c._id) : ""
-    )
-    const [deleteButton, setDeleteButton] = useState(false)
+    );
 
     const {reply} = formData;
 
@@ -88,6 +88,34 @@ const Detail = ({post}) => {
             })
     }
 
+    const editSubmit = e => {
+        e.preventDefault();
+
+        const token = localStorage.getItem("jwtToken");
+        setFormData({...formData})
+
+        if(reply) {
+            axios
+                .patch(`/blog/commentEdit/${post._id}/${selectedData}`, formData, {
+                    headers: {
+                        Authorization: `bearer ${token}`
+                    }
+                })
+                .then(res => {
+                    setFormData({
+                        ...formData,
+                        reply: ""
+                    });
+                    window.location.replace(`/post/${post._id}`)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
+        else {
+            toast.error("reply field is required")
+        }
+    }
 
     return (
         <div className="blog-page-wrapper space-mb--r130 space-mt--r130">
@@ -215,20 +243,8 @@ const Detail = ({post}) => {
                                             alt=""
                                         />
                                     </div>
+
                                     <div className="blog-comment__content">
-
-                                        {/*<div className="edit-form">*/}
-                                        {/*    <form>*/}
-                                        {/*          <textarea*/}
-                                        {/*              rows={8}*/}
-                                        {/*              placeholder="Message"*/}
-                                        {/*              defaultValue={""}*/}
-                                        {/*              className="border-top"*/}
-                                        {/*              onChange={handleChange('reply')}*/}
-                                        {/*          />*/}
-                                        {/*    </form>*/}
-                                        {/*</div>*/}
-
                                         <div className="username">
                                             {reply.handle}
 
@@ -248,11 +264,17 @@ const Detail = ({post}) => {
                                                     {authButton === true &&
                                                     selectedData === reply._id ?
                                                         <ul>
-                                                            <li>
-                                                                <button>
-                                                                    수정
-                                                                </button>
-                                                            </li>/
+                                                            {reply.user && reply.user === userVerification ?
+                                                                <li>
+                                                                    <button
+                                                                        onClick={() => setEditButton(!editButton)}
+                                                                    >
+                                                                        수정
+                                                                    </button>/
+                                                                </li>
+                                                            : ""}
+
+
                                                             <li>
                                                                 <form onSubmit={deleteSubmit}>
                                                                     <button
@@ -278,7 +300,40 @@ const Detail = ({post}) => {
                                         </div>
 
                                         <p className="message">
-                                            {reply.reply}
+
+                                            {authButton === true &&
+                                            editButton === true &&
+                                            selectedData === reply._id ?
+                                            (
+                                                <div className="comment-form w-75">
+                                                    <form
+                                                        className="reply"
+                                                        onSubmit={editSubmit}>
+                                                        <div>
+                                                            <textarea
+                                                                defaultValue={reply.reply}
+                                                                className=""
+                                                                onChange={handleChange('reply')}
+                                                            />
+                                                        </div>
+
+                                                        <div className="text-right p-2">
+                                                            <button
+                                                                type="submit"
+                                                                className="blog-button blog-button--small"
+                                                            >
+                                                                submit
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            ) : (
+                                                <span>
+                                                   {reply.reply}
+                                                </span>
+                                                )
+                                            }
+
                                         </p>
 
                                         <a href="#" className="reply-link">

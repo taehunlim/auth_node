@@ -21,10 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="6316a8d8-e217-4969-8a07-6640aa9f9b5b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_blog/blog.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/_blog/blog.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_blog/blog.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/_blog/blog.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_blog/blog.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/_blog/blog.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/swagger.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/assets/scss/layout/_form.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/scss/layout/_form.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/blog/Detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/blog/Detail.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +170,7 @@
       <workItem from="1614747860094" duration="6107000" />
       <workItem from="1614770400153" duration="4763000" />
       <workItem from="1614832894163" duration="11900000" />
-      <workItem from="1614850127006" duration="1734000" />
+      <workItem from="1614850127006" duration="10330000" />
     </task>
     <servers />
   </component>
