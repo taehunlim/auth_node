@@ -35,7 +35,8 @@ const schema = Schema(
                     required : true
                 },
                 handle : {
-                    type : String
+                    type : String,
+                    unique: true
                 },
                 date : {
                     type : Date,

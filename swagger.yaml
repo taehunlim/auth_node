@@ -609,7 +609,7 @@ paths:
                     example: "Unauthorized"
 
   /blog/{postId}/{commentId}:
-    patch:
+    put:
       tags:
         - Blog
       summary: Delete comments from user who wrote them or Admin
@@ -667,7 +667,7 @@ paths:
                     type: string
                     example: "Unauthorized"
 
-  /blog/write/{postId}:
+  /blog/edit/{postId}:
     patch:
       tags:
         - Admin
@@ -721,6 +721,77 @@ paths:
                   _message:
                     type: string
                     example: "Modified"
+
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Unauthorized"
+
+  /blog/commentEdit/{postId}/{commentId}:
+    patch:
+      tags:
+        - Blog
+      summary: Edit comments from user who wrote them
+      description: Edit comment
+      operationId: Edit comment
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: postId
+          schema:
+            type: string
+            minimum: 1
+          required: true
+          description: ID of the post
+        - in: path
+          name: commentId
+          schema:
+            type: string
+            minimum: 1
+          required: true
+          description: ID of the comment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reply:
+                  type: string
+                  example: "Updated reply"
+              required:
+                - reply
+
+      responses:
+        "200":
+          description: Modified
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Modified"
+
+        "400":
+          description: Comment ID & user ID match
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "This comment does not exist or is not your comment."
 
         "401":
           description: Unauthorized

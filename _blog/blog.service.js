@@ -6,7 +6,8 @@ module.exports = {
     getPostDetail,
     comments,
     deleteComment,
-    editPost
+    editPost,
+    editComment
 }
 
 async function posting ({title, content, image, user, handle}) {
@@ -76,6 +77,16 @@ async function deleteComment ({commentId}, user) {
 
     const blog = await blogModel.update(
         {
+            comments: {
+                $elemMatch: user.role === "Admin" ? {
+                    _id: commentId,
+                } : {
+                    _id: commentId,
+                    user: user.id
+                }
+            }
+        },
+        {
             $pull: user.role === "Admin" ? {
                 comments: {
                     _id: commentId
@@ -106,7 +117,7 @@ async function deleteComment ({commentId}, user) {
 
 }
 
-async function editPost ({postId, title, content, image}) {
+async function editPost ({title, content, image}) {
     const blog = await blogModel.update(
         {
             title,
@@ -118,4 +129,46 @@ async function editPost ({postId, title, content, image}) {
     return (
         blog
     )
+}
+
+async function editComment (postId, commentId, reply, user, handle) {
+
+    const newComment = {
+        reply: reply,
+        user: user,
+        handle: handle
+    }
+
+    const commentUser = await blogModel.find()
+
+    const blog = await blogModel.update(
+        {
+            comments: {
+                $elemMatch: {
+                    _id: commentId,
+                    user: user
+                }
+            }
+        },
+        {
+            $set: {
+               "comments.$": newComment
+            }
+        }
+    )
+
+    const filtering = commentUser.map(post =>
+        post.comments.filter(comment =>
+            comment.user.toString() === user &&
+            comment._id.toString() === commentId)
+            .find(comment =>
+                (comment._id.toString() === commentId))
+    ).filter(o => o).length === 0
+
+
+    if(filtering)
+        throw "This comment does not exist or is not your comment."
+
+    else
+        return blog
 }
