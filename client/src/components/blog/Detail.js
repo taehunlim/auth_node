@@ -33,6 +33,7 @@ const Detail = ({post}) => {
     );
 
     const {reply} = formData;
+    const token = localStorage.jwtToken;
 
     const userVerification = JSON.parse(localStorage.getItem("user")).id;
 
@@ -43,7 +44,6 @@ const Detail = ({post}) => {
     const handleSubmit = e => {
         e.preventDefault();
 
-        const token = localStorage.getItem("jwtToken");
         setFormData({...formData})
 
         if(reply) {
@@ -248,8 +248,8 @@ const Detail = ({post}) => {
                                         <div className="username">
                                             {reply.handle}
 
-                                            {reply.user && reply.user === userVerification ||
-                                            isAuth() && isAuth().role === 'Admin' ? (
+                                            {(reply.user && reply.user === userVerification ||
+                                            isAuth() && isAuth().role === 'Admin') && token !== "" ? (
                                                 <div className="menu">
 
                                                     <button

@@ -161,11 +161,17 @@ const Posting = ({post}) => {
                         </Card.Title>
 
                         <Editor
-                            toolbarClassName="toolbarClassName"
-                            wrapperClassName="wrapperClassName"
-                            editorClassName="editorClassName"
+                            wrapperClassName="wrapper-class"
+                            editorClassName="editor-class"
+                            toolbarClassName="toolbar-class"
+                            toolbar={{
+                                // inDropdown: 해당 항목과 관련된 항목을 드롭다운으로 나타낼것인지
+                                list: { inDropdown: true },
+                                textAlign: { inDropdown: true },
+                                link: { inDropdown: true },
+                            }}
                             localization={{
-                                local: "ko"
+                                locale: 'ko'
                             }}
                             editorState={editorState}
                             onEditorStateChange={onEditorStateChange}
