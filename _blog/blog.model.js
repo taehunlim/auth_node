@@ -10,7 +10,8 @@ const schema = Schema(
             ref: "account"
         },
         handle: {
-            type: String
+            type: String,
+            ref: "account"
         },
         title: {
             type: String,
@@ -29,6 +30,7 @@ const schema = Schema(
             {
                 user : {
                     type : Schema.Types.ObjectId,
+                    ref: "account"
                 },
                 reply : {
                     type : String,
@@ -36,12 +38,32 @@ const schema = Schema(
                 },
                 handle : {
                     type : String,
-                    unique: true
+                    ref: "account"
                 },
                 date : {
                     type : Date,
                     default : Date.now
-                }
+                },
+                reComments: [
+                    {
+                        user : {
+                            type : Schema.Types.ObjectId,
+                            ref: "account"
+                        },
+                        reply : {
+                            type : String,
+                            required : true
+                        },
+                        handle : {
+                            type : String,
+                            ref: "account"
+                        },
+                        date : {
+                            type : Date,
+                            default : Date.now
+                        }
+                    }
+                ]
             }
         ],
         category: {}

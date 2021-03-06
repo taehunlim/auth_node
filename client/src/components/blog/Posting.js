@@ -86,8 +86,8 @@ const Posting = ({post}) => {
             else {
                 axios
                     .post("http://localhost:5000/blog/write", {
-                        title, content: editorToHtml, image: selectedFiles
-                    }, {
+                            title, content: editorToHtml, image: selectedImg},
+                        {
                         headers: {
                             Authorization: `bearer ${token}`
                         }

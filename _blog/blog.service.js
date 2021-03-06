@@ -5,6 +5,7 @@ module.exports = {
     getPost,
     getPostDetail,
     comments,
+    reply,
     deleteComment,
     editPost,
     editComment
@@ -170,5 +171,42 @@ async function editComment (postId, commentId, reply, user, handle) {
         throw "This comment does not exist or is not your comment."
 
     else
-        return blog
+        return (
+            blog
+        )
+}
+
+async function reply (postId, commentId, reply, user, handle) {
+
+    const newComment = {
+        reply: reply,
+        user: user,
+        handle: handle
+    }
+
+    const blog = await blogModel.findOne(
+        {
+            _id: postId,
+            comments: {
+                $elemMatch: {
+                    _id: commentId
+                }
+            }
+        },
+        {
+            comments: {
+                $elemMatch: {
+                    _id: commentId
+                }
+            }
+        }
+    )
+
+    blog.comments.map(c => c.reComments.unshift(newComment))
+
+    await blog.save()
+
+    return (
+        blog
+    )
 }

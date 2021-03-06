@@ -19,7 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6316a8d8-e217-4969-8a07-6640aa9f9b5b" name="Default Changelist" comment="" />
+    <list default="true" id="6316a8d8-e217-4969-8a07-6640aa9f9b5b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_blog/blog.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/_blog/blog.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_blog/blog.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/_blog/blog.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_blog/blog.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/_blog/blog.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/blog/Posting.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/blog/Posting.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -168,7 +174,9 @@
       <workItem from="1614832894163" duration="11900000" />
       <workItem from="1614850127006" duration="10490000" />
       <workItem from="1614921459765" duration="1764000" />
-      <workItem from="1614923299867" duration="4878000" />
+      <workItem from="1614923299867" duration="5832000" />
+      <workItem from="1614937275327" duration="10793000" />
+      <workItem from="1615005076239" duration="8828000" />
     </task>
     <servers />
   </component>
@@ -216,11 +224,11 @@
       <screen x="0" y="25" width="1680" height="962" />
     </state>
     <state width="1019" height="251" key="GridCell.Tab.0.right/0.25.1680.962@0.25.1680.962" timestamp="1614509665493" />
-    <state x="921" y="245" width="595" height="522" key="find.popup" timestamp="1614681031055">
+    <state x="921" y="245" width="595" height="522" key="find.popup" timestamp="1615011218282">
       <screen x="0" y="25" width="1680" height="962" />
     </state>
     <state x="921" y="245" width="595" height="522" key="find.popup/-1048.25.1048.745/0.25.1680.962@0.25.1680.962" timestamp="1613015958076" />
-    <state x="921" y="245" width="595" height="522" key="find.popup/0.25.1680.962@0.25.1680.962" timestamp="1614681031055" />
+    <state x="921" y="245" width="595" height="522" key="find.popup/0.25.1680.962@0.25.1680.962" timestamp="1615011218282" />
     <state x="882" y="236" width="670" height="671" key="search.everywhere.popup" timestamp="1613909557638">
       <screen x="0" y="25" width="1680" height="962" />
     </state>

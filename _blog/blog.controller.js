@@ -13,6 +13,7 @@ router.get('/:postId', getPostDetail)
 
 router.post('/write', authorize(Role.Admin), postingSchema, posting)
 router.post('/comments/:postId', authorize([Role.Admin, Role.User]), commentsSchema, comments)
+router.post('/reply/:postId/:commentId', authorize([Role.Admin, Role.User]), replySchema, reply)
 
 router.put('/:postId/:commentId', authorize([Role.Admin, Role.User]), deleteComment)
 router.patch('/edit/:postId', authorize(Role.Admin), editPostSchema, editPost)
@@ -32,6 +33,7 @@ function posting (req, res, next) {
 
     const {title, content, image} = req.body
     const {id, handle} = req.user
+    console.log(handle)
 
     blogService
         .posting({title, content, image, user:id, handle})
@@ -125,8 +127,6 @@ function editCommentsSchema (req, res, next) {
 
 function editComment (req, res, next) {
 
-    console.log( req.user)
-
     blogService
         .editComment(
             req.params.postId,
@@ -137,6 +137,29 @@ function editComment (req, res, next) {
         )
         .then(edit => {
             res.json(edit)
+        })
+        .catch(next)
+}
+
+function replySchema (req, res, next) {
+    const schema = Joi.object({
+        reply: Joi.string().required()
+    })
+    validRequest(req, next, schema)
+}
+
+function reply (req, res, next) {
+
+    blogService
+        .reply(
+            req.params.postId,
+            req.params.commentId,
+            req.body.reply,
+            req.user.id,
+            req.user.handle
+        )
+        .then(re => {
+            res.json(re)
         })
         .catch(next)
 }
