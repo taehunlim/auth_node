@@ -32,7 +32,7 @@ const schema = Schema(
                     type : Schema.Types.ObjectId,
                     ref: "account"
                 },
-                reply : {
+                comment : {
                     type : String,
                     required : true
                 },
@@ -44,7 +44,7 @@ const schema = Schema(
                     type : Date,
                     default : Date.now
                 },
-                reComments: [
+                replies: [
                     {
                         user : {
                             type : Schema.Types.ObjectId,

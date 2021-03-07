@@ -43,13 +43,13 @@ async function getPostDetail ({postId}) {
     )
 }
 
-async function comments (postId, reply, user, handle) {
+async function comments (postId, comment, user, handle) {
     const blog = await blogModel.findById(postId)
 
     const newComment = {
-        reply: reply,
-        user: user,
-        handle: handle
+        comment,
+        user,
+        handle
     }
 
     blog.comments.unshift(newComment)
@@ -132,12 +132,12 @@ async function editPost ({title, content, image}) {
     )
 }
 
-async function editComment (postId, commentId, reply, user, handle) {
+async function editComment (postId, commentId, comment, user, handle) {
 
     const newComment = {
-        reply: reply,
-        user: user,
-        handle: handle
+        comment,
+        user,
+        handle
     }
 
     const commentUser = await blogModel.find()
@@ -179,9 +179,9 @@ async function editComment (postId, commentId, reply, user, handle) {
 async function reply (postId, commentId, reply, user, handle) {
 
     const newComment = {
-        reply: reply,
-        user: user,
-        handle: handle
+        reply,
+        user,
+        handle
     }
 
     const blog = await blogModel.findOne(
@@ -202,7 +202,8 @@ async function reply (postId, commentId, reply, user, handle) {
         }
     )
 
-    blog.comments.map(c => c.reComments.unshift(newComment))
+
+    blog.comments.map(c => c.replies.unshift(newComment))
 
     await blog.save()
 

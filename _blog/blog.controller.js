@@ -64,7 +64,7 @@ function getPostDetail (req, res, next) {
 
 function commentsSchema (req, res, next) {
     const schema = Joi.object({
-        reply: Joi.string().required()
+        comment: Joi.string().required()
     })
     validRequest(req, next, schema)
 }
@@ -74,7 +74,7 @@ function comments (req, res, next) {
     blogService
         .comments(
             req.params.postId,
-            req.body.reply,
+            req.body.comment,
             req.user.id,
             req.user.handle
         )
@@ -120,7 +120,7 @@ function editPost (req, res, next) {
 
 function editCommentsSchema (req, res, next) {
     const schema = Joi.object({
-        reply: Joi.string().required()
+        comment: Joi.string().required()
     })
     validRequest(req, next, schema)
 }
@@ -131,7 +131,7 @@ function editComment (req, res, next) {
         .editComment(
             req.params.postId,
             req.params.commentId,
-            req.body.reply,
+            req.body.comment,
             req.user.id,
             req.user.handle
         )
