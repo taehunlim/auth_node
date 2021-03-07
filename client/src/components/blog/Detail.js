@@ -24,21 +24,26 @@ import img from '../../assets/images/sample.png'
 const Detail = ({post}) => {
 
     const [formData, setFormData] = useState({
-        reply: ""
+        comment: "",
+    })
+    const [replyData, setReplyData] = useState({
+        reply: "",
     })
     const [authButton, setAuthButton] = useState(false);
     const [editButton, setEditButton] = useState(false);
+    const [replyButton, setReplyButton] = useState(false);
     const [selectedData, setSelectedData] = useState(
         post.comments ? post.comments.filter(c => c._id) : ""
     );
 
-    const {reply} = formData;
+    const {comment} = formData;
+    const {reply} = replyData;
     const token = localStorage.jwtToken;
-
-    const userVerification = JSON.parse(localStorage.getItem("user")).id;
+    const allComments = post.comments && post.comments.length + post.comments.map(reply => reply.replies.length).reduce((a, b) => a+b)
 
     const handleChange = text => e => {
         setFormData({...formData, [text]: e.target.value});
+        setReplyData({...replyData, [text]: e.target.value});
     };
 
     const handleSubmit = e => {
@@ -46,26 +51,31 @@ const Detail = ({post}) => {
 
         setFormData({...formData})
 
-        if(reply) {
-            axios
-                .post(`/blog/comments/${post._id}`, formData, {
-                    headers: {
-                        Authorization: `bearer ${token}`
-                    }
-                })
-                .then(res => {
-                    setFormData({
-                        ...formData,
-                        reply: ""
-                    });
-                    window.location.replace(`/post/${post._id}`)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
+        if(token) {
+            if(comment) {
+                axios
+                    .post(`/blog/comments/${post._id}`, formData, {
+                        headers: {
+                            Authorization: `bearer ${token}`
+                        }
+                    })
+                    .then(res => {
+                        setFormData({
+                            ...formData,
+                            comment: ""
+                        });
+                        window.location.replace(`/post/${post._id}`)
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+            }
+            else {
+                toast.error("comment field is required")
+            }
         }
         else {
-            toast.error("reply field is required")
+            toast.error('please log in')
         }
     };
 
@@ -94,7 +104,7 @@ const Detail = ({post}) => {
         const token = localStorage.getItem("jwtToken");
         setFormData({...formData})
 
-        if(reply) {
+        if(comment) {
             axios
                 .patch(`/blog/commentEdit/${post._id}/${selectedData}`, formData, {
                     headers: {
@@ -104,7 +114,7 @@ const Detail = ({post}) => {
                 .then(res => {
                     setFormData({
                         ...formData,
-                        reply: ""
+                        comment: ""
                     });
                     window.location.replace(`/post/${post._id}`)
                 })
@@ -113,19 +123,55 @@ const Detail = ({post}) => {
                 })
         }
         else {
-            toast.error("reply field is required")
+            toast.error("comment field is required")
         }
     }
+
+    const replySubmit = e => {
+        e.preventDefault();
+
+        setReplyData({...replyData})
+
+        if(token) {
+            if(reply) {
+                axios
+                    .post(`/blog/reply/${post._id}/${selectedData}`, replyData, {
+                        headers: {
+                            Authorization: `bearer ${token}`
+                        }
+                    })
+                    .then(res => {
+                        setReplyData({
+                            ...replyData,
+                            reply: ""
+                        });
+                        window.location.replace(`/post/${post._id}`)
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+            }
+            else {
+                toast.error("comment field is required")
+            }
+        }
+        else {
+            toast.error('please log in')
+        }
+    };
 
     return (
         <div className="blog-page-wrapper space-mb--r130 space-mt--r130">
             <ToastContainer/>
-            <Link
-                to={`/edit/${post._id}`}
-                className="blog-grid-editBtn"
-            >
-                <IoIosConstruct/>
-            </Link>
+            {isAuth() && isAuth().role === "Admin" ?
+                <Link
+                    to={`/edit/${post._id}`}
+                    className="blog-grid-editBtn"
+                >
+                    <IoIosConstruct/>
+                </Link> : ""
+            }
+
             <Container>
                 <Row>
                     <Col lg={12}>
@@ -155,7 +201,6 @@ const Detail = ({post}) => {
                                     <div className="post-date mb-0 space-pl--30">
                                         <IoIosCalendar />
                                         <p>
-
                                             <Moment
                                                 date={post.createdAt}
                                                 format="D MMM YYYY HH:mm"
@@ -171,7 +216,8 @@ const Detail = ({post}) => {
                                     <div className="post-comment space-pl--30">
                                         <IoMdChatbubbles />
                                         <a href="#">
-                                            {post.comments && post.comments.length} Comments
+                                            {allComments}
+                                            Comments
                                         </a>
                                     </div>
                                 </div>
@@ -231,89 +277,133 @@ const Detail = ({post}) => {
 
                         <div className="comments-wrapper space-mb--40">
                             <h2 className="comment-title space-mb--30">
-                                Comments <span>({post.comments && post.comments.length})</span>
+                                Comments <span>({allComments})</span>
                             </h2>
 
-                            {post.comments && post.comments.map(reply => (
-                                <div className="blog-comment" key={reply._id}>
-                                    <div className="blog-comment__image">
-                                        <img
-                                            src={img}
-                                            className="img-fluid"
-                                            alt=""
-                                        />
-                                    </div>
-
-                                    <div className="blog-comment__content">
-                                        <div className="username">
-                                            {reply.handle}
-
-                                            {(reply.user && reply.user === userVerification ||
-                                            isAuth() && isAuth().role === 'Admin') && token !== "" ? (
-                                                <div className="menu">
-
-                                                    <button
-                                                        onClick={() => {
-                                                            setAuthButton(!authButton)
-                                                            setSelectedData(reply._id)
-                                                        }}
-                                                    >
-                                                        ⋮
-                                                    </button>
-
-                                                    {authButton === true &&
-                                                    selectedData === reply._id ?
-                                                        <ul>
-                                                            {reply.user && reply.user === userVerification ?
-                                                                <li>
-                                                                    <button
-                                                                        onClick={() => setEditButton(!editButton)}
-                                                                    >
-                                                                        수정
-                                                                    </button>/
-                                                                </li>
-                                                            : ""}
-
-
-                                                            <li>
-                                                                <form onSubmit={deleteSubmit}>
-                                                                    <button
-                                                                        type="submit"
-                                                                    >
-                                                                        삭제
-                                                                    </button>
-                                                                </form>
-                                                            </li>
-                                                        </ul>
-                                                        : ""
-                                                    }
-                                                </div>
-                                                ) : ""
-                                            }
-
-                                            <span className="date">
-                                                <Moment
-                                                    date={reply.date}
-                                                    format="D MMM YYYY HH:mm"
-                                                />
-                                            </span>
+                            {post.comments && post.comments.map((comment, i) => (
+                                <div key={i}>
+                                    {/*comment*/}
+                                    <div className="blog-comment" key={comment._id}>
+                                        <div className="blog-comment__image">
+                                            <img
+                                                src={img}
+                                                className="img-fluid"
+                                                alt=""
+                                            />
                                         </div>
 
-                                        <p className="message">
+                                        <div className="blog-comment__content">
+                                            <div className="username">
+                                                {comment.handle}
 
-                                            {authButton === true &&
-                                            editButton === true &&
-                                            selectedData === reply._id ?
-                                            (
+                                                {(comment.user && comment.user === isAuth().id ||
+                                                    isAuth() && isAuth().role === 'Admin') && token !== "" ? (
+                                                    <div className="menu">
+                                                        <button
+                                                            onClick={() => {
+                                                                setAuthButton(!authButton)
+                                                                setSelectedData(comment._id)
+                                                            }}
+                                                        >
+                                                            ⋮
+                                                        </button>
+
+                                                        {authButton === true &&
+                                                        selectedData === comment._id ?
+                                                            <ul>
+                                                                {comment.user && comment.user === isAuth().id ?
+                                                                    <li>
+                                                                        <button
+                                                                            onClick={() => setEditButton(!editButton)}
+                                                                        >
+                                                                            수정
+                                                                        </button>/
+                                                                    </li>
+                                                                    : ""}
+
+                                                                <li>
+                                                                    <form onSubmit={deleteSubmit}>
+                                                                        <button
+                                                                            type="submit"
+                                                                        >
+                                                                            삭제
+                                                                        </button>
+                                                                    </form>
+                                                                </li>
+                                                            </ul>
+                                                            : ""
+                                                        }
+                                                    </div>
+                                                ) : ""
+                                                }
+
+                                                <span className="date">
+                                                    <Moment
+                                                        date={comment.date}
+                                                        format="D MMM YYYY HH:mm"
+                                                    />
+                                                </span>
+                                            </div>
+
+                                            <div className="message">
+
+                                                {authButton === true &&
+                                                editButton === true &&
+                                                selectedData === comment._id ?
+                                                    (
+                                                        <div className="comment-form w-75">
+                                                            <form
+                                                                className="reply"
+                                                                onSubmit={editSubmit}
+                                                            >
+                                                                <div>
+                                                                    <textarea
+                                                                        defaultValue={comment.comment}
+                                                                        className=""
+                                                                        onChange={handleChange('comment')}
+                                                                    />
+                                                                </div>
+
+                                                                <div className="text-right p-2">
+                                                                    <button
+                                                                        type="submit"
+                                                                        className="blog-button blog-button--small"
+                                                                    >
+                                                                        submit
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    ) : (
+                                                        <span>
+                                                           {comment.comment}
+                                                        </span>
+                                                    )
+                                                }
+
+                                            </div>
+
+                                            <button
+                                                className="reply-button"
+                                                onClick={() => {
+                                                    setReplyButton(!replyButton)
+                                                    setSelectedData(comment._id)
+                                                }}
+                                            >
+                                                <IoIosRedo /> reply
+                                            </button>
+
+                                            {replyButton &&  selectedData === comment._id? (
                                                 <div className="comment-form w-75">
                                                     <form
                                                         className="reply"
-                                                        onSubmit={editSubmit}>
+                                                        onSubmit={replySubmit}
+                                                    >
                                                         <div>
                                                             <textarea
-                                                                defaultValue={reply.reply}
                                                                 className=""
-                                                                onChange={handleChange('reply')}
+                                                                onChange={handleChange("reply")}
+                                                                value={reply}
                                                             />
                                                         </div>
 
@@ -328,45 +418,121 @@ const Detail = ({post}) => {
                                                     </form>
                                                 </div>
                                             ) : (
-                                                <span>
-                                                   {reply.reply}
-                                                </span>
-                                                )
-                                            }
+                                                ""
+                                            )}
 
-                                        </p>
 
-                                        <a href="#" className="reply-link">
-                                            <IoIosRedo /> reply
-                                        </a>
+                                        </div>
                                     </div>
+
+                                    {/*--- reply of comment ---*/}
+                                    {comment && comment.replies.map((reply, k) => (
+                                        <div key={k} className="blog-comment blog-comment--reply">
+                                            <div className="blog-comment__image">
+                                                <img
+                                                    src={img}
+                                                    className="img-fluid"
+                                                    alt=""
+                                                />
+                                            </div>
+                                            <div className="blog-comment__content">
+                                                <div className="username">
+                                                    {reply.handle}
+
+                                                    {(reply.user && reply.user === isAuth() && isAuth().id ||
+                                                        isAuth() && isAuth().role === 'Admin') && token !== "" ? (
+                                                        <div className="menu">
+
+                                                            <button
+                                                                onClick={() => {
+                                                                    setAuthButton(!authButton)
+                                                                    setSelectedData(reply._id)
+                                                                }}
+                                                            >
+                                                                ⋮
+                                                            </button>
+
+                                                            {authButton === true &&
+                                                            selectedData === reply._id ?
+                                                                <ul>
+                                                                    {reply.user && reply.user === isAuth().id ?
+                                                                        <li>
+                                                                            <button
+                                                                                onClick={() => setEditButton(!editButton)}
+                                                                            >
+                                                                                수정
+                                                                            </button>/
+                                                                        </li>
+                                                                        : ""}
+
+                                                                    <li>
+                                                                        <form onSubmit={deleteSubmit}>
+                                                                            <button
+                                                                                type="submit"
+                                                                            >
+                                                                                삭제
+                                                                            </button>
+                                                                        </form>
+                                                                    </li>
+                                                                </ul>
+                                                                : ""
+                                                            }
+                                                        </div>
+                                                    ) : ""
+                                                    }
+
+                                                    <span className="date">
+                                                        <Moment
+                                                            date={reply.date}
+                                                            format="D MMM YYYY HH:mm"
+                                                        />
+                                                    </span>
+                                                </div>
+
+                                                <div className="message">
+
+                                                    {authButton === true &&
+                                                    editButton === true &&
+                                                    selectedData === reply._id ?
+                                                        (
+                                                            <div className="comment-form w-75">
+                                                                <form
+                                                                    className="reply"
+                                                                    onSubmit={editSubmit}
+                                                                >
+                                                                    <div>
+                                                                        <textarea
+                                                                            defaultValue={reply.reply}
+                                                                            className=""
+                                                                            onChange={handleChange('comment')}
+                                                                        />
+                                                                    </div>
+
+                                                                    <div className="text-right p-2">
+                                                                        <button
+                                                                            type="submit"
+                                                                            className="blog-button blog-button--small"
+                                                                        >
+                                                                            submit
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        ) : (
+                                                            <span>
+                                                               {reply.reply}
+                                                            </span>
+                                                        )
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+
                                 </div>
+
                             ))}
-
-                            {/*--- reply of reply ---*/}
-
-                            {/*<div className="blog-comment blog-comment--reply">*/}
-                            {/*    <div className="blog-comment__image">*/}
-                            {/*        <img*/}
-                            {/*            src={img}*/}
-                            {/*            className="img-fluid"*/}
-                            {/*            alt=""*/}
-                            {/*        />*/}
-                            {/*    </div>*/}
-                            {/*    <div className="blog-comment__content">*/}
-                            {/*        <p className="username">*/}
-                            {/*            Name <span className="date">/ Feb 2, 2021</span>*/}
-                            {/*        </p>*/}
-
-                            {/*        <p className="message">*/}
-                            {/*            Thanks for*/}
-                            {/*        </p>*/}
-
-                            {/*        <a href="#" className="reply-link">*/}
-                            {/*            <IoIosRedo /> reply*/}
-                            {/*        </a>*/}
-                            {/*    </div>*/}
-                            {/*</div>*/}
                         </div>
 
                         <div className="comment-form">
@@ -378,26 +544,14 @@ const Detail = ({post}) => {
                                 <div className="comment-form comment-form">
                                     <form onSubmit={handleSubmit}>
                                         <Row>
-                                            {/*<Col lg={6} className="space-mb--20">*/}
-                                            {/*    <input type="text" placeholder="Name (*)" required />*/}
-                                            {/*</Col>*/}
-
-                                            {/*<Col lg={6} className="space-mb--20">*/}
-                                            {/*    <input*/}
-                                            {/*        type="password"*/}
-                                            {/*        placeholder="Password (*)"*/}
-                                            {/*        required*/}
-                                            {/*    />*/}
-                                            {/*</Col>*/}
-
                                             <Col lg={12} className="space-mb--20">
                                                 <textarea
                                                   cols={30}
                                                   rows={10}
                                                   placeholder="Message"
                                                   className="border-top"
-                                                  onChange={handleChange('reply')}
-                                                  value={reply}
+                                                  onChange={handleChange('comment')}
+                                                  value={comment}
                                                 />
                                             </Col>
 
