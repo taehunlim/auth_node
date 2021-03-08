@@ -109,7 +109,7 @@ function generateJwtToken (account) {
     return jwt.sign(
         {id: account._id},
         process.env.SECRET_KEY,
-        {expiresIn: "30m"}
+        {expiresIn: "60m"}
     )
 }
 

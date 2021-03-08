@@ -152,9 +152,7 @@ async function editComment (postId, commentId, comment, user, handle) {
             }
         },
         {
-            $set: {
-               "comments.$": newComment
-            }
+            "comments.$.comment": comment
         }
     )
 
