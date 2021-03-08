@@ -7,7 +7,7 @@ import {
     IoMdChatbubbles,
     IoLogoFacebook,
     IoLogoTwitter,
-    IoLogoGoogleplus,
+    IoLogoInstagram,
     IoLogoPinterest,
     IoMdPricetags,
     IoIosRedo,
@@ -39,7 +39,12 @@ const Detail = ({post}) => {
     const {comment} = formData;
     const {reply} = replyData;
     const token = localStorage.jwtToken;
-    const allComments = post.comments && post.comments.length + post.comments.map(reply => reply.replies.length).reduce((a, b) => a+b)
+    const allComments = post.comments ?
+        post.comments.map(replies => replies).length > 0 ?
+            post.comments.length + post.comments.map(reply => reply.replies.length).reduce((a, b) => a+b)
+            : ""
+        : ""
+
 
     const handleChange = text => e => {
         setFormData({...formData, [text]: e.target.value});
@@ -249,22 +254,22 @@ const Detail = ({post}) => {
                                             <span>Share this post:</span>
                                             <ul>
                                                 <li>
-                                                    <a href="#">
+                                                    <a href="https://www.facebook.com/" target="_blank">
                                                         <IoLogoFacebook />
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">
+                                                    <a href="https://twitter.com/" target="_blank">
                                                         <IoLogoTwitter />
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">
-                                                        <IoLogoGoogleplus />
+                                                    <a href="https://www.instagram.com/" target="_blank">
+                                                        <IoLogoInstagram />
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">
+                                                    <a href="https://www.pinterest.co.kr/" target="_blank">
                                                         <IoLogoPinterest />
                                                     </a>
                                                 </li>

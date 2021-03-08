@@ -20,7 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6316a8d8-e217-4969-8a07-6640aa9f9b5b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_blog/blog.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/_blog/blog.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_blog/blog.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/_blog/blog.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/blog/Detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/blog/Detail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/header/elements/ListControl.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/header/elements/ListControl.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,9 +57,10 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="add_unversioned_files" value="true" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.19.0" />
     <property name="javascript.nodejs.core.library.typings.version" value="12.19.0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/client/src/assets/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -64,19 +73,19 @@
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/client/src/assets/images" />
+      <recent name="$PROJECT_DIR$/client/src/components/header/elements" />
+      <recent name="$PROJECT_DIR$/client/src/assets/scss" />
+      <recent name="$PROJECT_DIR$/client/src/assets/scss/layout" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/client/src/components/blog" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/client/src/assets/images" />
       <recent name="$PROJECT_DIR$/client/src/components/verticalLayout/elements" />
       <recent name="$PROJECT_DIR$/client/src/components/verticalLayout" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/client/src/assets/images" />
-      <recent name="$PROJECT_DIR$/client/src/components/header/elements" />
-      <recent name="$PROJECT_DIR$/client/src/assets/scss" />
-      <recent name="$PROJECT_DIR$/client/src/assets/scss/layout" />
-      <recent name="$PROJECT_DIR$/client/src/assets/scss/base" />
     </key>
   </component>
   <component name="RunManager">
@@ -174,6 +183,7 @@
       <workItem from="1614937275327" duration="10793000" />
       <workItem from="1615005076239" duration="9681000" />
       <workItem from="1615085215998" duration="8808000" />
+      <workItem from="1615196774005" duration="9305000" />
     </task>
     <servers />
   </component>
@@ -221,11 +231,11 @@
       <screen x="0" y="25" width="1680" height="962" />
     </state>
     <state width="1019" height="251" key="GridCell.Tab.0.right/0.25.1680.962@0.25.1680.962" timestamp="1614509665493" />
-    <state x="921" y="245" width="595" height="522" key="find.popup" timestamp="1615011218282">
+    <state x="921" y="245" width="595" height="522" key="find.popup" timestamp="1615197533403">
       <screen x="0" y="25" width="1680" height="962" />
     </state>
     <state x="921" y="245" width="595" height="522" key="find.popup/-1048.25.1048.745/0.25.1680.962@0.25.1680.962" timestamp="1613015958076" />
-    <state x="921" y="245" width="595" height="522" key="find.popup/0.25.1680.962@0.25.1680.962" timestamp="1615011218282" />
+    <state x="921" y="245" width="595" height="522" key="find.popup/0.25.1680.962@0.25.1680.962" timestamp="1615197533403" />
     <state x="882" y="236" width="670" height="671" key="search.everywhere.popup" timestamp="1613909557638">
       <screen x="0" y="25" width="1680" height="962" />
     </state>

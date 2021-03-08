@@ -18,7 +18,10 @@ const ListControl = () => {
             <ul className="d-block text-center text-black">
                 <li>
                     {isAuth() && isAuth().role === "Admin" ?
-                        <Link to="/write">
+                        <Link
+                            to="/write"
+                            alt="write"
+                        >
                             <i className="fas fa-edit"></i>
                         </Link> :
                         <button

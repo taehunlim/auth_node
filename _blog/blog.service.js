@@ -8,7 +8,8 @@ module.exports = {
     reply,
     deleteComment,
     editPost,
-    editComment
+    editComment,
+    editReply
 }
 
 async function posting ({title, content, image, user, handle}) {
@@ -132,13 +133,7 @@ async function editPost ({title, content, image}) {
     )
 }
 
-async function editComment (postId, commentId, comment, user, handle) {
-
-    const newComment = {
-        comment,
-        user,
-        handle
-    }
+async function editComment (postId, commentId, comment, user) {
 
     const commentUser = await blogModel.find()
 
@@ -204,6 +199,32 @@ async function reply (postId, commentId, reply, user, handle) {
     blog.comments.map(c => c.replies.unshift(newComment))
 
     await blog.save()
+
+    return (
+        blog
+    )
+}
+
+async function editReply (postId, commentId, replyId, reply, user) {
+
+    const blog = await blogModel.update(
+        {
+            comments: {
+                $elemMatch: {
+                    _id: commentId,
+                    replies: {
+                        $elemMatch: {
+                            _id: replyId,
+                            user: user
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "comments.$[].replies.$.reply": reply
+        }
+    );
 
     return (
         blog
