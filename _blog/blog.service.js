@@ -222,7 +222,10 @@ async function editReply (postId, commentId, replyId, reply, user) {
             }
         },
         {
-            "comments.$[].replies.$.reply": reply
+            "comments.$.replies.$[d].reply": reply
+        },
+        {
+            arrayFilters: [{"d._id": replyId}]
         }
     );
 
@@ -263,11 +266,6 @@ async function deleteReply (postId, commentId, replyId, user) {
             }
         }
     )
-
-    console.log(postId)
-    console.log(commentId)
-    console.log(replyId)
-    console.log(user.id)
 
     return (
         blog
