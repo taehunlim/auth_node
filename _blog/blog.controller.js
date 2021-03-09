@@ -8,17 +8,21 @@ const validRequest = require('_middleware/validate-request');
 const authorize = require('_middleware/authorize');
 const Role = require('_helper/role')
 
+// post
 router.get('/', getPost)
 router.get('/:postId', getPostDetail)
-
 router.post('/write', authorize(Role.Admin), postingSchema, posting)
-router.post('/comments/:postId', authorize([Role.Admin, Role.User]), commentsSchema, comments)
-router.post('/reply/:postId/:commentId', authorize([Role.Admin, Role.User]), replySchema, reply)
-
-router.put('/:postId/:commentId', authorize([Role.Admin, Role.User]), deleteComment)
 router.patch('/edit/:postId', authorize(Role.Admin), editPostSchema, editPost)
+
+//comments
+router.post('/comments/:postId', authorize([Role.Admin, Role.User]), commentsSchema, comments)
 router.patch('/commentEdit/:postId/:commentId', authorize([Role.Admin, Role.User]), editCommentsSchema, editComment)
+router.put('/:postId/:commentId', authorize([Role.Admin, Role.User]), deleteComment)
+
+//replies
+router.post('/reply/:postId/:commentId', authorize([Role.Admin, Role.User]), replySchema, reply)
 router.patch('/replyEdit/:postId/:commentId/:replyId', authorize([Role.Admin, Role.User]), editReplySchema, editReply)
+router.put('/:postId/:commentId/:replyId', authorize([Role.Admin, Role.User]), deleteReply)
 
 function postingSchema (req, res, next) {
     const schema = Joi.object({
@@ -63,39 +67,6 @@ function getPostDetail (req, res, next) {
         .catch(next)
 }
 
-function commentsSchema (req, res, next) {
-    const schema = Joi.object({
-        comment: Joi.string().required()
-    })
-    validRequest(req, next, schema)
-}
-
-function comments (req, res, next) {
-
-    blogService
-        .comments(
-            req.params.postId,
-            req.body.comment,
-            req.user.id,
-            req.user.handle
-        )
-        .then(post => {
-            res.json(post)
-        })
-        .catch(next)
-}
-
-
-function deleteComment (req, res, next) {
-
-    blogService
-        .deleteComment(req.params, req.user)
-        .then(comment => {
-            res.json(comment)
-        })
-        .catch(next)
-}
-
 function editPostSchema (req, res, next) {
     const schema = Joi.object({
         title: Joi.string().required(),
@@ -119,6 +90,29 @@ function editPost (req, res, next) {
         .catch(next)
 }
 
+function commentsSchema (req, res, next) {
+    const schema = Joi.object({
+        comment: Joi.string().required()
+    })
+    validRequest(req, next, schema)
+}
+
+function comments (req, res, next) {
+
+    blogService
+        .comments(
+            req.params.postId,
+            req.body.comment,
+            req.user.id,
+            req.user.handle
+        )
+        .then(post => {
+            res.json(post)
+        })
+        .catch(next)
+}
+
+
 function editCommentsSchema (req, res, next) {
     const schema = Joi.object({
         comment: Joi.string().required()
@@ -137,6 +131,16 @@ function editComment (req, res, next) {
         )
         .then(edit => {
             res.json(edit)
+        })
+        .catch(next)
+}
+
+function deleteComment (req, res, next) {
+
+    blogService
+        .deleteComment(req.params, req.user)
+        .then(comment => {
+            res.json(comment)
         })
         .catch(next)
 }
@@ -180,6 +184,21 @@ function editReply (req, res, next) {
             req.params.replyId,
             req.body.reply,
             req.user.id,
+        )
+        .then(reply => {
+            res.json(reply)
+        })
+        .catch(next)
+}
+
+function deleteReply (req, res, next) {
+
+    blogService
+        .deleteReply(
+            req.params.postId,
+            req.params.commentId,
+            req.params.replyId,
+            req.user
         )
         .then(reply => {
             res.json(reply)

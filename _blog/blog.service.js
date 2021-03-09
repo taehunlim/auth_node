@@ -4,12 +4,13 @@ module.exports = {
     posting,
     getPost,
     getPostDetail,
-    comments,
-    reply,
-    deleteComment,
     editPost,
+    comments,
     editComment,
-    editReply
+    deleteComment,
+    reply,
+    editReply,
+    deleteReply
 }
 
 async function posting ({title, content, image, user, handle}) {
@@ -44,6 +45,20 @@ async function getPostDetail ({postId}) {
     )
 }
 
+async function editPost ({title, content, image}) {
+    const blog = await blogModel.update(
+        {
+            title,
+            content,
+            image
+        }
+    )
+
+    return (
+        blog
+    )
+}
+
 async function comments (postId, comment, user, handle) {
     const blog = await blogModel.findById(postId)
 
@@ -72,6 +87,42 @@ async function comments (postId, comment, user, handle) {
 //         blog.comments.filter(cm => cm._id.toString() === commentId )
 //     );
 // }
+
+async function editComment (postId, commentId, comment, user) {
+
+    const commentUser = await blogModel.find()
+
+    const blog = await blogModel.update(
+        {
+            comments: {
+                $elemMatch: {
+                    _id: commentId,
+                    user: user
+                }
+            }
+        },
+        {
+            "comments.$.comment": comment
+        }
+    )
+
+    const filtering = commentUser.map(post =>
+        post.comments.filter(comment =>
+            comment.user.toString() === user &&
+            comment._id.toString() === commentId)
+            .find(comment =>
+                (comment._id.toString() === commentId))
+    ).filter(o => o).length === 0
+
+
+    if(filtering)
+        throw "This comment does not exist or is not your comment."
+
+    else
+        return (
+            blog
+        )
+}
 
 async function deleteComment ({commentId}, user) {
 
@@ -119,56 +170,6 @@ async function deleteComment ({commentId}, user) {
 
 }
 
-async function editPost ({title, content, image}) {
-    const blog = await blogModel.update(
-        {
-            title,
-            content,
-            image
-        }
-    )
-
-    return (
-        blog
-    )
-}
-
-async function editComment (postId, commentId, comment, user) {
-
-    const commentUser = await blogModel.find()
-
-    const blog = await blogModel.update(
-        {
-            comments: {
-                $elemMatch: {
-                    _id: commentId,
-                    user: user
-                }
-            }
-        },
-        {
-            "comments.$.comment": comment
-        }
-    )
-
-    const filtering = commentUser.map(post =>
-        post.comments.filter(comment =>
-            comment.user.toString() === user &&
-            comment._id.toString() === commentId)
-            .find(comment =>
-                (comment._id.toString() === commentId))
-    ).filter(o => o).length === 0
-
-
-    if(filtering)
-        throw "This comment does not exist or is not your comment."
-
-    else
-        return (
-            blog
-        )
-}
-
 async function reply (postId, commentId, reply, user, handle) {
 
     const newComment = {
@@ -194,7 +195,6 @@ async function reply (postId, commentId, reply, user, handle) {
             }
         }
     )
-
 
     blog.comments.map(c => c.replies.push(newComment))
 
@@ -225,6 +225,49 @@ async function editReply (postId, commentId, replyId, reply, user) {
             "comments.$[].replies.$.reply": reply
         }
     );
+
+    return (
+        blog
+    )
+}
+
+async function deleteReply (postId, commentId, replyId, user) {
+
+    const blog = await blogModel.update(
+        {
+            comments: {
+                $elemMatch: {
+                    _id: commentId,
+                    replies: {
+                        $elemMatch: user.role === "Admin" ? {
+                            _id: replyId,
+                        } : {
+                            _id: replyId,
+                            user: user.id
+                        }
+                    }
+                }
+            }
+        },
+        {
+            $pull: user.role === "Admin" ? {
+                "comments.$.replies": {
+                    _id: replyId
+                }
+            } : {
+                "comments.$.replies": {
+                    _id: replyId,
+                    user: user.id
+                }
+
+            }
+        }
+    )
+
+    console.log(postId)
+    console.log(commentId)
+    console.log(replyId)
+    console.log(user.id)
 
     return (
         blog
