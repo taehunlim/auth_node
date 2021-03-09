@@ -53,7 +53,7 @@ async function comments (postId, comment, user, handle) {
         handle
     }
 
-    blog.comments.unshift(newComment)
+    blog.comments.push(newComment)
 
     await blog.save()
 
@@ -196,7 +196,7 @@ async function reply (postId, commentId, reply, user, handle) {
     )
 
 
-    blog.comments.map(c => c.replies.unshift(newComment))
+    blog.comments.map(c => c.replies.push(newComment))
 
     await blog.save()
 

@@ -20,15 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6316a8d8-e217-4969-8a07-6640aa9f9b5b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_blog/blog.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/_blog/blog.controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_blog/blog.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/_blog/blog.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/blog/Detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/blog/Detail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/header/elements/ListControl.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/header/elements/ListControl.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +177,8 @@
       <workItem from="1614937275327" duration="10793000" />
       <workItem from="1615005076239" duration="9681000" />
       <workItem from="1615085215998" duration="8808000" />
-      <workItem from="1615196774005" duration="9305000" />
+      <workItem from="1615196774005" duration="11143000" />
+      <workItem from="1615265906652" duration="4998000" />
     </task>
     <servers />
   </component>
@@ -236,11 +231,11 @@
     </state>
     <state x="921" y="245" width="595" height="522" key="find.popup/-1048.25.1048.745/0.25.1680.962@0.25.1680.962" timestamp="1613015958076" />
     <state x="921" y="245" width="595" height="522" key="find.popup/0.25.1680.962@0.25.1680.962" timestamp="1615197533403" />
-    <state x="882" y="236" width="670" height="671" key="search.everywhere.popup" timestamp="1613909557638">
+    <state x="882" y="236" width="670" height="671" key="search.everywhere.popup" timestamp="1615206843413">
       <screen x="0" y="25" width="1680" height="962" />
     </state>
     <state x="882" y="236" width="670" height="676" key="search.everywhere.popup/0.23.1680.970@0.23.1680.970" timestamp="1612260060958" />
-    <state x="882" y="236" width="670" height="671" key="search.everywhere.popup/0.25.1680.962@0.25.1680.962" timestamp="1613909557638" />
+    <state x="882" y="236" width="670" height="671" key="search.everywhere.popup/0.25.1680.962@0.25.1680.962" timestamp="1615206843413" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

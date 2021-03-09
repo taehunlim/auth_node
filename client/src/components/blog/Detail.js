@@ -32,9 +32,13 @@ const Detail = ({post}) => {
     const [authButton, setAuthButton] = useState(false);
     const [editButton, setEditButton] = useState(false);
     const [replyButton, setReplyButton] = useState(false);
-    const [selectedData, setSelectedData] = useState(
-        post.comments ? post.comments.filter(c => c._id) : ""
-    );
+    const [selectedData, setSelectedData] = useState();
+
+    const getCommentData = post.comments
+        ? post.comments.filter(c => c.replies.find(r => r._id === selectedData))
+        : ""
+    const getCommentId = getCommentData[0] ? getCommentData[0]._id : ""
+
 
     const {comment} = formData;
     const {reply} = replyData;
@@ -164,6 +168,40 @@ const Detail = ({post}) => {
             toast.error('please log in')
         }
     };
+
+    const replyEditSubmit = e => {
+        e.preventDefault();
+
+        const token = localStorage.getItem("jwtToken");
+        setReplyData({...replyData})
+
+        if(token) {
+            if(reply) {
+                axios
+                    .patch(`/blog/replyEdit/${post._id}/${getCommentId}/${selectedData}`, replyData, {
+                        headers: {
+                            Authorization: `bearer ${token}`
+                        }
+                    })
+                    .then(res => {
+                        setFormData({
+                            ...replyData,
+                            reply: ""
+                        });
+                        window.location.replace(`/post/${post._id}`)
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+            }
+            else {
+                toast.error("reply field is required")
+            }
+        }
+        else {
+            toast.error('please log in')
+        }
+    }
 
     return (
         <div className="blog-page-wrapper space-mb--r130 space-mt--r130">
@@ -408,7 +446,7 @@ const Detail = ({post}) => {
                                                             <textarea
                                                                 className=""
                                                                 onChange={handleChange("reply")}
-                                                                value={reply}
+                                                                defaultValue={reply}
                                                             />
                                                         </div>
 
@@ -503,13 +541,13 @@ const Detail = ({post}) => {
                                                             <div className="comment-form w-75">
                                                                 <form
                                                                     className="reply"
-                                                                    onSubmit={editSubmit}
+                                                                    onSubmit={replyEditSubmit}
                                                                 >
                                                                     <div>
                                                                         <textarea
                                                                             defaultValue={reply.reply}
                                                                             className=""
-                                                                            onChange={handleChange('comment')}
+                                                                            onChange={handleChange('reply')}
                                                                         />
                                                                     </div>
 
