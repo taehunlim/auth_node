@@ -18,7 +18,6 @@ const PostDetail = () => {
         const {data} = await axios.get(`/blog/${id}`)
 
         setPosts(data)
-
     };
 
     useEffect(() => {

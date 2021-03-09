@@ -35,7 +35,7 @@ const Detail = ({post}) => {
     const [selectedData, setSelectedData] = useState();
 
     const getCommentData = post.comments
-        ? post.comments.filter(c => c.replies.find(r => r._id === selectedData))
+        ? post.comments.filter(c => c.replies.find(r => r ? r._id === selectedData : ""))
         : ""
     const getCommentId = getCommentData[0] ? getCommentData[0]._id : ""
 
@@ -91,8 +91,6 @@ const Detail = ({post}) => {
     const deleteSubmit = e => {
         e.preventDefault();
 
-        const token = localStorage.getItem("jwtToken");
-
         axios
             .put(`/blog/${post._id}/${selectedData}`, {}, {
                 headers: {
@@ -110,7 +108,6 @@ const Detail = ({post}) => {
     const editSubmit = e => {
         e.preventDefault();
 
-        const token = localStorage.getItem("jwtToken");
         setFormData({...formData})
 
         if(comment) {
@@ -201,6 +198,23 @@ const Detail = ({post}) => {
         else {
             toast.error('please log in')
         }
+    }
+
+    const replyDeleteSubmit = e => {
+        e.preventDefault();
+
+        axios
+            .put(`/blog/${post._id}/${getCommentId}/${selectedData}`, {}, {
+                headers: {
+                    Authorization: `bearer ${token}`
+                }
+            })
+            .then(() => {
+                window.location.replace(`/post/${post._id}`)
+            })
+            .catch(() => {
+                console.log("fail")
+            })
     }
 
     return (
@@ -482,10 +496,11 @@ const Detail = ({post}) => {
                                                 <div className="username">
                                                     {reply.handle}
 
-                                                    {(reply.user && reply.user === isAuth() && isAuth().id ||
+                                                    {console.log(isAuth().id)}
+                                                    {console.log("333",reply.user)}
+                                                    {(reply.user && reply.user === isAuth().id ||
                                                         isAuth() && isAuth().role === 'Admin') && token !== "" ? (
                                                         <div className="menu">
-
                                                             <button
                                                                 onClick={() => {
                                                                     setAuthButton(!authButton)
@@ -509,7 +524,7 @@ const Detail = ({post}) => {
                                                                         : ""}
 
                                                                     <li>
-                                                                        <form onSubmit={deleteSubmit}>
+                                                                        <form onSubmit={replyDeleteSubmit}>
                                                                             <button
                                                                                 type="submit"
                                                                             >
