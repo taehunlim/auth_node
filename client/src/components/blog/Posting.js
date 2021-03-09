@@ -6,6 +6,7 @@ import Dropzone from 'react-dropzone';
 import {EditorState, convertToRaw, ContentState} from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
+import Select from 'react-select'
 import axios from 'axios';
 import {ToastContainer, toast} from 'react-toastify'
 
@@ -18,8 +19,14 @@ const Posting = ({post}) => {
     const [formData, setFormData] = useState({
         title: "",
         content: "",
-        image: ""
+        image: "",
+        category: ""
     })
+
+    const options = [
+        {label: "react", value: "react"},
+        {label: "react-native", value: "react-native"}
+    ]
 
     const {title} = formData;
 
@@ -33,6 +40,10 @@ const Posting = ({post}) => {
 
     const onEditorStateChange = (editorState) => {
         setEditorState(editorState)
+    }
+
+    const categoryChange = text => e => {
+        setFormData({...formData, [text]: e.value})
     }
 
     const handleAcceptedFiles = files => {
@@ -152,6 +163,21 @@ const Posting = ({post}) => {
                             type="text"
                             onChange={handleChange('title')}
                             value={title}
+                        />
+                    </Card.Body>
+
+                    <Card.Body>
+                        <Card.Title>
+                            Category
+                        </Card.Title>
+
+                        <Select
+                            options={options}
+                            isSearchable
+                            onChange={categoryChange("category")}
+                            value={options.find(op => {
+                                return op.value === formData.category
+                            })}
                         />
                     </Card.Body>
 

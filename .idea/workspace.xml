@@ -21,9 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="6316a8d8-e217-4969-8a07-6640aa9f9b5b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_blog/blog.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/_blog/blog.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/blog/Detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/blog/Detail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/screens/PostDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/screens/PostDetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/blog/Posting.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/blog/Posting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +179,8 @@
       <workItem from="1615005076239" duration="9681000" />
       <workItem from="1615085215998" duration="8808000" />
       <workItem from="1615196774005" duration="11143000" />
-      <workItem from="1615265906652" duration="11105000" />
+      <workItem from="1615265906652" duration="11608000" />
+      <workItem from="1615283021608" duration="5914000" />
     </task>
     <servers />
   </component>
@@ -249,13 +250,11 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/_blog/blog.controller.js</url>
           <line>177</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/client/src/components/blog/Detail.js</url>
           <line>107</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
