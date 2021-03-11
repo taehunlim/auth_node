@@ -1,14 +1,26 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 import HeaderContents from "./elements/HeaderContents";
 import HeaderSearch from "./elements/HeaderSearch";
 import ListControl from "./elements/ListControl";
 
-
 import img from '../../assets/images/profile.jpg'
 
 const Header = ({menuActiveState, setMenuActiveState, searchActiveState, setSearchActiveState}) => {
+
+    const [headerContent, setHeaderContent] = useState([])
+
+    const getData = async () => {
+        const {data} = await axios.get('/blog')
+        setHeaderContent(data)
+    }
+
+    useEffect(() => {
+        getData();
+    }, [setHeaderContent])
+
     return (
         <div className={`vertical-menu ${menuActiveState || searchActiveState ? "active" : ""}`}>
 
@@ -35,7 +47,7 @@ const Header = ({menuActiveState, setMenuActiveState, searchActiveState, setSear
             </ul>
 
             {menuActiveState ?
-                <HeaderContents/> :
+                <HeaderContents content={headerContent}/> :
                 <div className="profile text-center">
                     <div className="profile-caption">
                         <Link to="/">

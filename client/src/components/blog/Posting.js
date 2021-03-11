@@ -1,18 +1,20 @@
 import React, {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {Container, Card, Row, Col} from 'react-bootstrap';
 import { Editor } from 'react-draft-wysiwyg';
 import Dropzone from 'react-dropzone';
-import {EditorState, convertToRaw, ContentState} from 'draft-js';
+import { EditorState, convertToRaw, ContentState} from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import Select from 'react-select'
 import axios from 'axios';
 import {ToastContainer, toast} from 'react-toastify'
 
+import {isAuth} from "../../helpers/auth";
+
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
-const Posting = ({post}) => {
+const Posting = ({post, history}) => {
 
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [editorState, setEditorState] = useState(EditorState.createEmpty())
@@ -20,15 +22,29 @@ const Posting = ({post}) => {
         title: "",
         content: "",
         image: "",
-        category: ""
+        mainCategory: "",
+        subcategory: ""
     })
 
-    const options = [
-        {label: "react", value: "react"},
-        {label: "react-native", value: "react-native"}
+    const {title, mainCategory} = formData;
+    const token = localStorage.jwtToken;
+
+    if(token === "" || isAuth().role !== "Admin") {
+        history.push('/')
+    }
+
+    const mainOptions = [
+        {label: "IT", value: "it"},
+        {label: "LifeStyle", value: "lifestyle"}
     ]
 
-    const {title} = formData;
+    const subOptions = mainCategory === "it" ?
+        [
+            {label: "REACT", value: "react"}
+        ] : mainCategory === "lifestyle" ?
+        [
+            {label: "LooK", value: "look"}
+        ] : []
 
     const editorToHtml = draftToHtml(convertToRaw(editorState.getCurrentContent()));
     //Strip HTML
@@ -40,6 +56,7 @@ const Posting = ({post}) => {
 
     const onEditorStateChange = (editorState) => {
         setEditorState(editorState)
+        setFormData({...formData, content: editorToHtml})
     }
 
     const categoryChange = text => e => {
@@ -70,14 +87,11 @@ const Posting = ({post}) => {
     const handleSubmit = e => {
         e.preventDefault();
 
-        const token = localStorage.getItem('jwtToken');
-        const selectedImg = selectedFiles[0] ? selectedFiles[0].preview : ""
-
         if(title) {
             if(post) {
                 axios
                     .patch(`/blog/edit/${post._id}`, {
-                        title, content: editorToHtml, image: selectedImg
+                        ...formData, image: selectedFiles[0] && selectedFiles[0].preview
                     }, {
                         headers: {
                             Authorization: `bearer ${token}`
@@ -96,9 +110,9 @@ const Posting = ({post}) => {
             }
             else {
                 axios
-                    .post("http://localhost:5000/blog/write", {
-                            title, content: editorToHtml, image: selectedImg},
-                        {
+                    .post(`/blog/write`, {
+                        ...formData, image: selectedFiles[0] && selectedFiles[0].preview
+                    }, {
                         headers: {
                             Authorization: `bearer ${token}`
                         }
@@ -131,7 +145,12 @@ const Posting = ({post}) => {
                 const editorState = EditorState.createWithContent(contentState);
 
                 setEditorState(editorState)
-                setFormData({...formData, title: post.title})
+                setFormData({
+                    ...formData,
+                    title: post.title,
+                    mainCategory: post.category.mainCategory,
+                    subcategory: post.category.subcategory
+                })
             }
         }
     }, [post])
@@ -171,12 +190,23 @@ const Posting = ({post}) => {
                             Category
                         </Card.Title>
 
+                        <p className="m-0">Main Category</p>
                         <Select
-                            options={options}
+                            options={mainOptions}
                             isSearchable
-                            onChange={categoryChange("category")}
-                            value={options.find(op => {
-                                return op.value === formData.category
+                            onChange={categoryChange("mainCategory")}
+                            value={mainOptions.find(op => {
+                                return op.value === formData.mainCategory
+                            })}
+                        />
+
+                        <p className="m-0 mt-3">Sub Category</p>
+                        <Select
+                            options={subOptions}
+                            isSearchable
+                            onChange={categoryChange("subcategory")}
+                            value={subOptions.find(op => {
+                                return op.value === formData.subcategory
                             })}
                         />
                     </Card.Body>
@@ -285,4 +315,4 @@ const Posting = ({post}) => {
     );
 };
 
-export default Posting;
+export default withRouter(Posting);

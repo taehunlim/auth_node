@@ -29,6 +29,8 @@ function postingSchema (req, res, next) {
         title: Joi.string().required(),
         content: Joi.string().required(),
         image: Joi.string(),
+        mainCategory: Joi.string().required(),
+        subcategory: Joi.string().required()
     })
 
     validRequest(req, next, schema)
@@ -36,12 +38,12 @@ function postingSchema (req, res, next) {
 
 function posting (req, res, next) {
 
-    const {title, content, image} = req.body
+    const {title, content, image, mainCategory, subcategory} = req.body
     const {id, handle} = req.user
     console.log(handle)
 
     blogService
-        .posting({title, content, image, user:id, handle})
+        .posting({title, content, image, mainCategory, subcategory, user:id, handle})
         .then(posting => {
             res.json(posting)
         })
@@ -72,6 +74,8 @@ function editPostSchema (req, res, next) {
         title: Joi.string().required(),
         content: Joi.string().required(),
         image: Joi.string(),
+        mainCategory: Joi.string().required(),
+        subcategory: Joi.string().required()
     })
 
     validRequest(req, next, schema)
@@ -79,11 +83,11 @@ function editPostSchema (req, res, next) {
 
 function editPost (req, res, next) {
 
-    const {title, content, image} = req.body
+    const {title, content, image, mainCategory, subcategory} = req.body
     const {postId} = req.params
 
     blogService
-        .editPost({postId, title, content, image})
+        .editPost({postId, title, content, image, mainCategory, subcategory})
         .then(post => {
             res.json(post)
         })

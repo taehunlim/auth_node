@@ -13,10 +13,15 @@ module.exports = {
     deleteReply
 }
 
-async function posting ({title, content, image, user, handle}) {
+async function posting ({title, content, image, mainCategory, subcategory, user, handle}) {
+
+    const ctg = {
+        mainCategory,
+        subcategory
+    }
 
     const blog = await new blogModel({
-        title, content, image, user, handle
+        title, content, image, user, handle, category: ctg
     })
 
     // blog.image.data = fs.readFileSync('imgPath');
@@ -45,12 +50,17 @@ async function getPostDetail ({postId}) {
     )
 }
 
-async function editPost ({title, content, image}) {
+async function editPost ({title, content, image, mainCategory, subcategory}) {
+
     const blog = await blogModel.update(
         {
             title,
             content,
-            image
+            image,
+            category: {
+                mainCategory,
+                subcategory
+            }
         }
     )
 

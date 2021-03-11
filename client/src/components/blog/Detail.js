@@ -243,7 +243,7 @@ const Detail = ({post}) => {
                             <div className="blog-grid-post__content blog-grid-post--sticky__content">
                                 <div className="post-category space-mb--10">
                                     <Link to="/">
-                                        REACT
+                                        {post.category && post.category.subcategory}
                                     </Link>
                                 </div>
                                 <h2 className="post-title">{post.title}</h2>
@@ -267,7 +267,7 @@ const Detail = ({post}) => {
                                     </div>
                                     <div className="post-category space-pl--30">
                                         <Link to="/">
-                                            REACT
+                                            {post.category && post.category.subcategory}
                                         </Link>
                                     </div>
                                     <div className="post-comment space-pl--30">

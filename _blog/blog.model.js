@@ -66,7 +66,16 @@ const schema = Schema(
                 ]
             }
         ],
-        category: {}
+        category: {
+            mainCategory: {
+                type: String,
+                required: true
+            },
+            subcategory: {
+                type: String,
+                required: true
+            }
+        }
     },
     {
         timestamps: true
